@@ -1,0 +1,71 @@
+<!--Head Partial-->
+<head th:fragment="head">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" th:href="@{/style.css}" />
+  <link rel="stylesheet" th:href="@{/media.css}" />
+</head>
+
+<!-- end head partial -->
+<nav th:fragment="Navbar">
+  <button onclick="openHamburgerMenu()" class="openbtn">&#9776;</button>
+  <nav id="navbar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeHamburgerMenu()"
+      >&times;</a
+    >
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+    <!-- modal trigger -->
+    <button id="open_modal_btn">Login</button>
+  </nav>
+
+  <!-- The Modal -->
+<div id="modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="card">
+        <button class="close" id="close_modal_btn">&times;</button>
+        <div class="card_body">
+            <form action="" method="post">
+                <div class="d_flex">
+                <label for="username">Username</label>
+                <input type="text" class="form_control" id="username" placeholder="username">
+                <label for="password">Username</label>
+                <input type="password" class="form_control" id="password" placeholder="password">
+                <input type="submit" class="btn btn_primary" placeholder="Login">
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- navbar ends here -->
+
+<footer th:fragment="Footer">
+  <!-- footer goes here -->
+  <footer class="footer">
+    <hr />
+    Made By: ul
+  </footer>
+</footer>
+
+<div th:fragment="Product_Card">
+  <div class="card">
+    <img
+      src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
+      alt=""
+      class="card_img"
+    />
+    <div class="card_body">
+      <span>reviews</span>
+      <p class="card_title">title</p>
+      <p class="lead_text">desc</p>
+      <span class="price_text"></span>
+    </div>
+  </div>
+</div>

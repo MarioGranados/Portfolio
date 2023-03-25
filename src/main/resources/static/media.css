@@ -1,0 +1,14 @@
+/* mobile large to small */
+@media only screen and (max-width: 426px) {
+    body {
+      background-color: lightblue;
+    }
+    
+  }
+
+@media only screen and (max-width: 769px) {
+    body {
+        background-color: lightcoral;
+    }
+    
+}

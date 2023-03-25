@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="partials :: head">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main">
+      <div th:replace="partials :: Navbar"></div>
+      <!-- footer -->
+
+      <div class="d_flex">
+        <div th:replace="partials :: Product_Card"></div>
+        <div th:replace="partials :: Product_Card"></div>
+        <div th:replace="partials :: Product_Card"></div>
+      </div>
+      <div th:replace="partials :: Footer"></div>
+    </div>
+
+    <script>
+      const openHamburgerMenu = () => {
+        document.getElementById("main").style.marginLeft = "250px";
+        document.getElementById("navbar").style.width = "250px";
+      };
+      const closeHamburgerMenu = () => {
+        document.getElementById("main").style.marginLeft = "0";
+        document.getElementById("navbar").style.width = "0";
+      };
+
+      const signInModalPopUp = document.getElementById("modal");
+
+      const openModalButton = document.getElementById("open_modal_btn");
+
+      const closeModalButton = document.getElementById("close_modal_btn");
+
+      openModalButton.onclick = function () {
+        signInModalPopUp.style.display = "block";
+        closeHamburgerMenu();
+      };
+      closeModalButton.onclick = function () {
+        signInModalPopUp.style.display = "none";
+      };
+      //tap anywhere to close modal window
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          signInModalPopUp.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>
