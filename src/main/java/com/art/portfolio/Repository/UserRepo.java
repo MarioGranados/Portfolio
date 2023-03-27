@@ -1,5 +1,10 @@
 package com.art.portfolio.Repository;
 
-public class UserRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.art.portfolio.Model.User;
+
+public interface UserRepo extends JpaRepository <User, Long>{
+    User findByUsername(String username);
 
 }
