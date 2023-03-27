@@ -43,11 +43,11 @@ public class SecurityConfiguration {
               /* Logout configuration */
               .and()
               .logout()
-              .logoutSuccessUrl("/") // append a query string value
+              .logoutSuccessUrl("/signin?signout") // append a query string value
               /* Pages that can be viewed without having to log in */
               .and()
               .authorizeHttpRequests()
-              .requestMatchers("/", "/ads", "/ads/{id}") // anyone can see the home and the ads pages
+              .requestMatchers("/", "/ads", "/ads/{id}", "/css/**", "/js/**", "/sign-up") // anyone can see the home and the ads pages
               .permitAll()
               /* Pages that require authentication */
               .and()

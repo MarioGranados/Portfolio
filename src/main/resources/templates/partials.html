@@ -1,17 +1,38 @@
-<!--Head Partial-->
+<!-- ----------------------------------------------------------------------- -->
+<!--                              Head Partial                               -->
+<!-- ----------------------------------------------------------------------- -->
 <head th:fragment="head">
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <link rel="stylesheet" th:href="@{/style.css}" />
-  <link rel="stylesheet" th:href="@{/media.css}" />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{css/media.css}" />
 </head>
 
-<!-- end head partial -->
+<!-- ----------------------------------------------------------------------- -->
+<!--                               End Header                                -->
+<!-- ----------------------------------------------------------------------- -->
+
+<!-- ----------------------------------------------------------------------- -->
+<!--                                 Navbar                                  -->
+<!-- ----------------------------------------------------------------------- -->
+
 <nav th:fragment="Navbar">
+
+  <nav id="navbar">
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+      <button id="open_modal_btn">Login</button>
+    </div>
+  </nav>
+
+  <nav id="mobile_navbar">
   <button onclick="openHamburgerMenu()" class="openbtn">&#9776;</button>
-  <nav id="navbar" class="sidebar">
+  <div id="hamburger_menu" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeHamburgerMenu()"
       >&times;</a
     >
@@ -19,41 +40,74 @@
     <a href="#">Services</a>
     <a href="#">Clients</a>
     <a href="#">Contact</a>
-    <!-- modal trigger -->
+    <!-- ---------------------------- Modal Trigger ---------------------------- -->
     <button id="open_modal_btn">Login</button>
+    <!-- ---------------------------- Modal Trigger ---------------------------- -->
+  </div>
   </nav>
 
-  <!-- The Modal -->
-<div id="modal" class="modal">
-    <!-- Modal content -->
+  <!-- ----------------------------------------------------------------------- -->
+  <!--                                  Modal                                  -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div id="modal" class="modal">
+    <!-- ---------------------------- Modal Content ---------------------------- -->
     <div class="modal-content">
       <div class="card">
         <button class="close" id="close_modal_btn">&times;</button>
         <div class="card_body">
-            <form action="" method="post">
-                <div class="d_flex">
-                <label for="username">Username</label>
-                <input type="text" class="form_control" id="username" placeholder="username">
-                <label for="password">Username</label>
-                <input type="password" class="form_control" id="password" placeholder="password">
-                <input type="submit" class="btn btn_primary" placeholder="Login">
-                </div>
-            </form>
+          <form action="" method="post">
+            <div class="d_flex">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                class="form_control"
+                id="username"
+                placeholder="username"
+              />
+              <label for="password">Username</label>
+              <input
+                type="password"
+                class="form_control"
+                id="password"
+                placeholder="password"
+              />
+              <input
+                type="submit"
+                class="btn btn_primary"
+                placeholder="Login"
+              />
+              <p>Don't Have An Account? <button>Sign Up Here</button></p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+  <!-- ----------------------------------------------------------------------- -->
+  <!--                               Modal Ends                                -->
+  <!-- ----------------------------------------------------------------------- -->
 </nav>
-<!-- navbar ends here -->
+<!-- ----------------------------------------------------------------------- -->
+<!--                            NavBar Ends Here                             -->
+<!-- ----------------------------------------------------------------------- -->
 
+<!-- ----------------------------------------------------------------------- -->
+<!--                              Footer Start                               -->
+<!-- ----------------------------------------------------------------------- -->
 <footer th:fragment="Footer">
-  <!-- footer goes here -->
   <footer class="footer">
     <hr />
     Made By: ul
   </footer>
 </footer>
 
+<!-- ----------------------------------------------------------------------- -->
+<!--                               Footer End                                -->
+<!-- ----------------------------------------------------------------------- -->
+
+<!-- ----------------------------------------------------------------------- -->
+<!--                                  Card                                   -->
+<!-- ----------------------------------------------------------------------- -->
 <div th:fragment="Product_Card">
   <div class="card">
     <img
@@ -69,66 +123,71 @@
     </div>
   </div>
 </div>
+<!-- ----------------------------------------------------------------------- -->
+<!--                                Card Ends                                -->
+<!-- ----------------------------------------------------------------------- -->
 
-
-<!-- sign up form  -->
-
+<!-- ----------------------------------------------------------------------- -->
+<!--                                 SIGN UP                                 -->
+<!-- ----------------------------------------------------------------------- -->
 <div th:fragment="Sign_Up">
-    <h1>Create an account</h1>
-    <form th:action="@{/sign-up}" method="POST" th:object="${user}">
-        <label for="username">Username</label>
-        <input id="username" th:field="*{username}" />
+  <h1>Create an account</h1>
+  <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+    <label for="username">Username</label>
+    <input id="username" th:field="*{username}" />
 
-        <label for="email">Email</label>
-        <input id="email" th:field="*{email}" />
+    <label for="email">Email</label>
+    <input id="email" th:field="*{email}" />
 
-        <label for="password">Password</label>
-        <input id="password" type="password" th:field="*{password}" />
+    <label for="password">Password</label>
+    <input id="password" type="password" th:field="*{password}" />
 
-        <input value="Sign me up!" type="submit" />
-    </form>
+    <input value="Sign me up!" type="submit" />
+  </form>
 </div>
 
-<!-- sign up form ends -->
+<!-- ----------------------------------------------------------------------- -->
+<!--                              SIGN UP ENDS                               -->
+<!-- ----------------------------------------------------------------------- -->
 
-<!-- sign in form starts here -->
-
+<!-- ----------------------------------------------------------------------- -->
+<!--                                 SIGN IN                                 -->
+<!-- ----------------------------------------------------------------------- -->
 <div th:fragment="Log_In">
-    <h1>Log In</h1>
-    <div th:if="${param.error}">
-        Invalid Username and Password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
+  <h1>Log In</h1>
+  <div th:if="${param.error}">Invalid Username and Password.</div>
+  <div th:if="${param.logout}">You have been logged out.</div>
 
-    <form th:action="@{/login}" method="post">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text" />
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" />
-        <input type="submit" value="Log In" />
-    </form>
+  <form th:action="@{/login}" method="post">
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" />
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" />
+    <input type="submit" value="Log In" />
+  </form>
 </div>
 
-<!-- sign in form ends here -->
+<!-- ----------------------------------------------------------------------- -->
+<!--                              SIGN IN ENDS                               -->
+<!-- ----------------------------------------------------------------------- -->
 
-<!-- log out button starts here -->
-
+<!-- ----------------------------------------------------------------------- -->
+<!--                               LOG OUT BTN                               -->
+<!-- ----------------------------------------------------------------------- -->
 <div th:fragment="Log_Out_Btn">
-        <ul>
-            <!-- More links here... -->
-            <li>
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-                </form>
-            </li>
-        </ul>
-    
+  <ul>
+    <!-- More links here... -->
+    <li>
+      <form th:action="@{/logout}" th:method="post">
+        <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+      </form>
+    </li>
+  </ul>
 </div>
 
-<!-- log out button ends here -->
-
+<!-- ----------------------------------------------------------------------- -->
+<!--                            LOG OUT ENDS HERE                            -->
+<!-- ----------------------------------------------------------------------- -->
 
 <!-- <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">

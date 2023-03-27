@@ -12,16 +12,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name = "users")
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class User  implements UserDetails{
+public class User implements UserDetails{
+
+    public User() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -76,6 +73,45 @@ public class User  implements UserDetails{
     @Override
     public String getUsername() {
         return this.username;
+    }
+
+    public void setPassword(String hashPassword) {
+        this.password = hashPassword;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
     
 }

@@ -10,5 +10,10 @@
     body {
         background-color: lightcoral;
     }
-    
+    #mobile_navbar {
+      display: unset;
+    }
+    #navbar {
+      display: none;
+    }
 }

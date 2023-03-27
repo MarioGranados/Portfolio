@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head th:replace="partials :: head">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,26 +7,32 @@
     <title>Document</title>
   </head>
   <body>
+    <!-- ----------- id=main gets pushed to the side in mobile menu ------------ -->
     <div id="main">
+      <!-- ------------------------------- Navbar -------------------------------- -->
       <div th:replace="partials :: Navbar"></div>
-      <!-- footer -->
-
+      <!-- ------------------------------- Navbar -------------------------------- -->
+      <!-- ------------------------------ PRODUCTS ------------------------------- -->
       <div class="d_flex">
         <div th:replace="partials :: Product_Card"></div>
         <div th:replace="partials :: Product_Card"></div>
         <div th:replace="partials :: Product_Card"></div>
       </div>
+      <!-- ------------------------------ PRODUCTS ------------------------------- -->
+
+      <!-- ------------------------------- FOOTER -------------------------------- -->
       <div th:replace="partials :: Footer"></div>
+      <!-- ------------------------------- FOOTER -------------------------------- -->
     </div>
 
     <script>
       const openHamburgerMenu = () => {
         document.getElementById("main").style.marginLeft = "250px";
-        document.getElementById("navbar").style.width = "250px";
+        document.getElementById("hamburger_menu").style.width = "250px";
       };
       const closeHamburgerMenu = () => {
         document.getElementById("main").style.marginLeft = "0";
-        document.getElementById("navbar").style.width = "0";
+        document.getElementById("hamburger_menu").style.width = "0";
       };
 
       const signInModalPopUp = document.getElementById("modal");
