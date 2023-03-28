@@ -33,4 +33,7 @@ public class Post {
 
     @ManyToOne
     User user;
+
+    public void setUser(User user2) {
+    }
 }
