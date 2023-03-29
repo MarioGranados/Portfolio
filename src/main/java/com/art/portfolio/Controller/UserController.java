@@ -47,7 +47,10 @@ public class UserController {
 
     @GetMapping("/profile/{username}")
     public String searchByProfileName(@PathVariable String username, Model model) {
-        model.addAttribute("user", userRepo.findByUsername(username));
+        User user = userRepo.findByUsername(username);
+        //lets not have any access to passwords through here
+        user.setPassword(passwordEncoder.encode("You thought it would be that easy?"));
+        model.addAttribute("user", user);
         return "user";
     }
 }

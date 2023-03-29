@@ -1,8 +1,13 @@
 package com.art.portfolio.Controller;
 
+import java.util.List;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.art.portfolio.Model.Post;
@@ -28,5 +33,19 @@ public class PostController {
         postRepo.save(post);
         return "post";
     }
+    @GetMapping("/post/create")
+    public String getCreatePostForm(Model model) {
+        model.addAttribute("post", new Post());
+        return "post";
+    }
 
+
+    /* --------------------------------- gallery -------------------------------- */
+    @GetMapping("/gallery/{username}")
+    public String showGallery(Model model, @PathVariable String username) {
+        User user = userRepo.findByUsername(username);
+        List<Post> posts = postRepo.findByUserId(user.getId());
+        model.addAttribute("posts", posts);
+        return "gallery";
+    }
 }

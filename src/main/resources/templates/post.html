@@ -1,1 +1,22 @@
-html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sign up</title>
+</head>
+<body>
+    <h1>Create an account</h1>
+    <form th:action="@{/post/create}" method="POST" th:object="${post}">
+        <label for="title">title</label>
+        <input id="title" th:field="*{imageTitle}" />
+
+        <label for="desc">desc</label>
+        <input id="desc" th:field="*{imageDesc}" />
+
+        <label for="price">price</label>
+        <input id="price" th:field="*{imagePrice}" />
+
+        <input value="create post!" type="submit" />
+    </form>
+</body>
+</html>
