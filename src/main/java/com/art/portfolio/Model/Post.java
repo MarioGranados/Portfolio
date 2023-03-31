@@ -1,5 +1,9 @@
 package com.art.portfolio.Model;
 
+import java.io.File;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +17,13 @@ import jakarta.persistence.Table;
 @Entity
 public class Post {
 
+    public String getImageUrl() {
+        return this.imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public Long getId() {
         return this.id;
@@ -28,14 +39,6 @@ public class Post {
 
     public void setImageTitle(String imageTitle) {
         this.imageTitle = imageTitle;
-    }
-
-    public String getImageUrl() {
-        return this.imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public String getImageDesc() {
