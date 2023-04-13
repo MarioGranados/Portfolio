@@ -79,7 +79,7 @@ public class PostController {
     @GetMapping("/gallery/{username}")
     public String showGallery(Model model, @PathVariable String username) {
         User user = userRepo.findByUsername(username);
-        user.setPassword("somepassword");
+        user.setPassword("");
         List<Post> posts = postRepo.findByUserId(user.getId());
         model.addAttribute("posts", posts);
         return "gallery";

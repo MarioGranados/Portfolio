@@ -3,7 +3,7 @@
     body {
       background-color: lightblue;
     }
-    
+
   }
 
 @media only screen and (max-width: 769px) {
@@ -16,4 +16,5 @@
     #navbar {
       display: none;
     }
+
 }

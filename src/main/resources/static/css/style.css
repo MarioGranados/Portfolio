@@ -69,8 +69,15 @@
   }
   .d_flex {
       display: flex;
-      flex-direction: column;
   }
+  .gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+
   /* product card ends */
 
   /* footer */

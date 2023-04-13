@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-  <head th:replace="partials :: head">
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:replace="~{partials :: head}">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,27 +14,25 @@
     <!-- ----------- id=main gets pushed to the side in mobile menu ------------ -->
     <div id="main">
       <!-- ------------------------------- Navbar -------------------------------- -->
-      <div th:replace="partials :: Navbar"></div>
+      <div th:replace="~{partials :: Navbar}"></div>
       <!-- ------------------------------- Navbar -------------------------------- -->
       <!-- ------------------------------- BANNER -------------------------------- -->
       <div class="hero_image">
         <div class="hero_text">
-          <h1 style="font-size:50px">I am John Doe</h1>
+          <h1 style="font-size: 50px">I am John Doe</h1>
           <p>And I'm a Photographer</p>
           <button>Hire me</button>
         </div>
       </div>
       <!-- ----------------------------- BANNER ENDS ----------------------------- -->
       <!-- ------------------------------ PRODUCTS ------------------------------- -->
-      <div class="d_flex">
-        <div th:replace="partials :: Product_Card"></div>
-        <div th:replace="partials :: Product_Card"></div>
-        <div th:replace="partials :: Product_Card"></div>
+      <div class="gallery">
+        <div th:replace="~{partials :: Product_Card}"></div>
       </div>
       <!-- ------------------------------ PRODUCTS ------------------------------- -->
 
       <!-- ------------------------------- FOOTER -------------------------------- -->
-      <div th:replace="partials :: Footer"></div>
+      <div th:replace="~{partials :: Footer}"></div>
       <!-- ------------------------------- FOOTER -------------------------------- -->
     </div>
 
@@ -53,15 +55,14 @@
       const navbar = document.getElementById("navbar");
 
       //active navbar showing current page
-      let navbarBtns = navbar.getElementsByClassName('nav_link');
-      for(let i = 0; i < navbarBtns.length; i++) {
-        navbarBtns[i].addEventListener('click', function() {
+      let navbarBtns = navbar.getElementsByClassName("nav_link");
+      for (let i = 0; i < navbarBtns.length; i++) {
+        navbarBtns[i].addEventListener("click", function () {
           let current = document.getElementsByClassName("active");
           current[0].className = current[0].className.replace(" active", "");
           this.className += " active";
-        })
+        });
       }
-      
 
       openModalButton.onclick = function () {
         signInModalPopUp.style.display = "block";

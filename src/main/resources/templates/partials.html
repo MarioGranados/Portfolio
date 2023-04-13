@@ -19,7 +19,6 @@
 <!-- ----------------------------------------------------------------------- -->
 
 <nav th:fragment="Navbar">
-
   <nav id="navbar">
     <div class="topnav">
       <a class="nav_link active" href="#home">Home</a>
@@ -31,19 +30,22 @@
   </nav>
 
   <nav id="mobile_navbar">
-  <button onclick="openHamburgerMenu()" class="openbtn">&#9776;</button>
-  <div id="hamburger_menu" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeHamburgerMenu()"
-      >&times;</a
-    >
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
-    <!-- ---------------------------- Modal Trigger ---------------------------- -->
-    <button id="open_modal_btn">Login</button>
-    <!-- ---------------------------- Modal Trigger ---------------------------- -->
-  </div>
+    <button onclick="openHamburgerMenu()" class="openbtn">&#9776;</button>
+    <div id="hamburger_menu" class="sidebar">
+      <a
+        href="javascript:void(0)"
+        class="closebtn"
+        onclick="closeHamburgerMenu()"
+        >&times;</a
+      >
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+      <!-- ---------------------------- Modal Trigger ---------------------------- -->
+      <button id="open_modal_btn">Login</button>
+      <!-- ---------------------------- Modal Trigger ---------------------------- -->
+    </div>
   </nav>
 
   <!-- ----------------------------------------------------------------------- -->
@@ -55,7 +57,9 @@
       <div class="card">
         <button class="close" id="close_modal_btn">&times;</button>
         <div class="card_body">
-          <form action="" method="post">
+          <div th:if="${param.error}">Invalid Username and Password.</div>
+          <div th:if="${param.logout}">You have been logged out.</div>
+          <form th:action="@{/login}" method="GET">
             <div class="d_flex">
               <label for="username">Username</label>
               <input
@@ -76,7 +80,7 @@
                 class="btn btn_primary"
                 placeholder="Login"
               />
-              <p>Don't Have An Account? <button>Sign Up Here</button></p>
+              <p>Don't Have An Account? <a>Sign Up Here</a></p>
             </div>
           </form>
         </div>
@@ -108,20 +112,19 @@
 <!-- ----------------------------------------------------------------------- -->
 <!--                                  Card                                   -->
 <!-- ----------------------------------------------------------------------- -->
-<div th:fragment="Product_Card">
-  <div class="card">
-    <img
-      src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
-      alt=""
-      class="card_img"
-    />
-    <div class="card_body">
-      <span>reviews</span>
-      <p class="card_title">title</p>
-      <p class="lead_text">desc</p>
-      <span class="price_text"></span>
+<div th:fragment="Product_Card" th:each="post : ${post}">
+    <div class="card">
+      <img
+        src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
+        alt=""
+        class="card_img"
+      />
+      <div class="card_body">
+        <p class="card_title" th:text="${post.imageTitle}"></p>
+        <p class="lead_text" th:text="${post.imageDesc}"></p>
+        <span class="price_text" th:text="${post.imagePrice}"></span>
+      </div>
     </div>
-  </div>
 </div>
 <!-- ----------------------------------------------------------------------- -->
 <!--                                Card Ends                                -->

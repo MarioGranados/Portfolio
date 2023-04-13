@@ -1,9 +1,5 @@
 package com.art.portfolio.Model;
 
-import java.io.File;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
