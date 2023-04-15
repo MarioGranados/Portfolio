@@ -9,7 +9,6 @@
   <link rel="stylesheet" th:href="@{/css/style.css}" />
   <link rel="stylesheet" th:href="@{css/media.css}" />
 </head>
-
 <!-- ----------------------------------------------------------------------- -->
 <!--                               End Header                                -->
 <!-- ----------------------------------------------------------------------- -->
@@ -17,15 +16,23 @@
 <!-- ----------------------------------------------------------------------- -->
 <!--                                 Navbar                                  -->
 <!-- ----------------------------------------------------------------------- -->
-
 <nav th:fragment="Navbar">
   <nav id="navbar">
     <div class="topnav">
-      <a class="nav_link active" href="#home">Home</a>
-      <a class="nav_link" href="#news">News</a>
-      <a class="nav_link" href="#contact">Contact</a>
-      <a class="nav_link" href="#about">About</a>
-      <button id="open_modal_btn" class="btn_primary">Login</button>
+      <a class="nav_link active" href="/">Home</a>
+      <a class="nav_link" href="/gallery">Gallery</a>
+      <a class="nav_link" href="/contact">Contact</a>
+      <a class="nav_link" href="/about">About</a>
+      <!-- <button id="open_modal_btn" class="btn_primary">Login</button> -->
+      <a href="/login" class="nav_link" sec:authorize="isAnonymous()">Login</a>
+      <a href="/sign-up" sec:authorize="isAnonymous()">Sign Up</a>
+      <a class="nav_link" href="/profile" sec:authorize="isAuthenticated()">Profile</a>
+      <form
+        th:action="@{/logout}"
+        th:method="post"
+        sec:authorize="isAuthenticated()">
+        <button class="nav_link">Logout</button>
+      </form>
     </div>
   </nav>
 
@@ -42,12 +49,16 @@
       <a href="#">Services</a>
       <a href="#">Clients</a>
       <a href="#">Contact</a>
+      <a href="/login">Login</a>
+      <a href="/sign-up">Sign Up</a>
+      <form th:action="@{/logout}" th:method="post">
+        <button class="nav_link">Logout</button>
+      </form>
       <!-- ---------------------------- Modal Trigger ---------------------------- -->
       <button id="open_modal_btn">Login</button>
       <!-- ---------------------------- Modal Trigger ---------------------------- -->
     </div>
   </nav>
-
   <!-- ----------------------------------------------------------------------- -->
   <!--                                  Modal                                  -->
   <!-- ----------------------------------------------------------------------- -->
@@ -100,9 +111,48 @@
 <!-- ----------------------------------------------------------------------- -->
 <footer th:fragment="Footer">
   <footer class="footer">
-    <hr />
-    Made By: ul
-  </footer>
+    <div class="footer_container">
+     <div class="row">
+       <div class="footer-col">
+         <h4>company</h4>
+         <ul>
+           <li><a href="#">about us</a></li>
+           <li><a href="#">our services</a></li>
+           <li><a href="#">privacy policy</a></li>
+           <li><a href="#">affiliate program</a></li>
+         </ul>
+       </div>
+       <div class="footer-col">
+         <h4>get help</h4>
+         <ul>
+           <li><a href="#">FAQ</a></li>
+           <li><a href="#">shipping</a></li>
+           <li><a href="#">returns</a></li>
+           <li><a href="#">order status</a></li>
+           <li><a href="#">payment options</a></li>
+         </ul>
+       </div>
+       <div class="footer-col">
+         <h4>online shop</h4>
+         <ul>
+           <li><a href="#">watch</a></li>
+           <li><a href="#">bag</a></li>
+           <li><a href="#">shoes</a></li>
+           <li><a href="#">dress</a></li>
+         </ul>
+       </div>
+       <div class="footer-col">
+         <h4>follow us</h4>
+         <div class="social-links">
+           <a href="#"><i class="fab fa-facebook-f"></i></a>
+           <a href="#"><i class="fab fa-twitter"></i></a>
+           <a href="#"><i class="fab fa-instagram"></i></a>
+           <a href="#"><i class="fab fa-linkedin-in"></i></a>
+         </div>
+       </div>
+     </div>
+    </div>
+ </footer>
 </footer>
 
 <!-- ----------------------------------------------------------------------- -->
@@ -113,18 +163,18 @@
 <!--                                  Card                                   -->
 <!-- ----------------------------------------------------------------------- -->
 <div th:fragment="Product_Card" th:each="post : ${post}">
-    <div class="card">
-      <img
-        src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
-        alt=""
-        class="card_img"
-      />
-      <div class="card_body">
-        <p class="card_title" th:text="${post.imageTitle}"></p>
-        <p class="lead_text" th:text="${post.imageDesc}"></p>
-        <span class="price_text" th:text="${post.imagePrice}"></span>
-      </div>
+  <div class="card">
+    <img
+      src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg"
+      alt=""
+      class="card_img"
+    />
+    <div class="card_body">
+      <p class="card_title" th:text="${post.imageTitle}"></p>
+      <p class="lead_text" th:text="${post.imageDesc}"></p>
+      <span class="price_text" th:text="${post.imagePrice}"></span>
     </div>
+  </div>
 </div>
 <!-- ----------------------------------------------------------------------- -->
 <!--                                Card Ends                                -->
