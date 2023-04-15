@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8" />
-    <title>Sign up</title>
-</head>
+    <head th:replace="~{partials :: head}">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+      </head>
 <body>
+    <nav th:replace="~{partials :: Navbar}"></nav>
+
     <h1>Create an account</h1>
     <form th:action="@{/post/create}" method="POST" th:object="${post}" enctype="multipart/form-data">
         <label for="title">title</label>
