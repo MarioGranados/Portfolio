@@ -12,16 +12,16 @@
     <h1>Create an account</h1>
     <form th:action="@{/post/create}" method="POST" th:object="${post}" enctype="multipart/form-data">
         <label for="title">title</label>
-        <input id="title" th:field="*{imageTitle}" />
+        <input type="text" id="title" th:field="*{imageTitle}" />
 
         <label for="file">Upload a file!</label>
         <input id="file" name="file" type="file" />
 
         <label for="desc">desc</label>
-        <input id="desc" th:field="*{imageDesc}" />
+        <input type="text" id="desc" th:field="*{imageDesc}" />
 
         <label for="price">price</label>
-        <input id="price" th:field="*{imagePrice}" />
+        <input type="text" id="price" th:field="*{imagePrice}" />
 
         <input value="create post!" type="submit" />
     </form>

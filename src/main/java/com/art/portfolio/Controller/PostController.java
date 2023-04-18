@@ -84,4 +84,8 @@ public class PostController {
         model.addAttribute("posts", posts);
         return "gallery";
     }
+    @GetMapping("/gallery")
+    public String allGallery() {
+        return "gallery";
+    }
 }
