@@ -43,7 +43,7 @@ public class PostController {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        String filename = passwordEncoder.encode(uploadedFile.getOriginalFilename());
+        String filename = uploadedFile.getOriginalFilename();
         // String filepath = Paths.get(uploadPath, filename).toString();
         File destinationFile = new File(uploadPath, filename);
 
@@ -57,9 +57,11 @@ public class PostController {
         try {
             uploadedFile.transferTo(destinationFile);
             model.addAttribute("message", "File successfully uploaded!");
+            System.out.println("Sucess");
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("message", "Oops! Something went wrong! " + e);
+            System.out.println("Error");
         }
         post.setUser(user);
         post.setImageUrl("images/" + filename);

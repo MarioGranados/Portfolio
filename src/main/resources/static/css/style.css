@@ -25,6 +25,30 @@
  align-items: center;
 }
 
+/* --------------------------------- Buttons --------------------------------- */
+
+.btn {
+  margin: 15px auto;
+  padding: 14px 26px;
+  border: none;
+  border-radius: 10px;
+  transition: 280ms;
+  font-size: 20px;
+}
+.btn_primary {
+  background-color: blue;
+  transition: 280ms;
+  color:white;;
+}
+.btn_primary:hover {
+  background-color: cyan;
+  color: black;
+  transition: 280ms;
+}
+
+/* --------------------------------- Buttons ends ---------------------------- */
+
+
 /* --------------------------------- NAVBAR --------------------------------- */
 
 #mobile_navbar {
@@ -33,33 +57,35 @@
 
 .topnav {
   overflow: hidden;
-  background-color: var(--dark);
+  background-color: var(--light);
   display: flex;
   align-items: center;
   justify-content: right;
+  height: 15vh;
 }
 
 .topnav a, .topnav button {
-  color: #f2f2f2;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .topnav button {
-  background-color: var(--dark);
+  background-color: var(--light);
   border: none;
-}
-
-.topnav a:hover, .topnav button:hover {
-  background-color: #ddd;
   color: black;
 }
 
+.topnav a:hover, .topnav button:hover {
+  color: blue;
+  transition: 280ms;
+}
+
 .topnav a.active, .topnav button.active {
-  background-color: #04AA6D;
-  color: white;
+  color: blue;
+  transition: 280ms;
 }
 
 /* ------------------------------- NAVBAR ENDS ------------------------------ */
@@ -321,27 +347,6 @@ ul{
   color: white;
 }
 
-.hero_text button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 10px 25px;
-  color: black;
-  background-color: #ddd;
-  text-align: center;
-  cursor: pointer;
-}
-
-.hero_text button:hover {
-  background-color: #555;
-  color: white;
-}
-
 .container {
   width: 100%;
-}
-
-/* --------------------------------- BUTTONS -------------------------------- */
-.btn_primary {
-  background-color: var(--primary)
 }
