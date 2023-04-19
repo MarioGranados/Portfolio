@@ -65,7 +65,7 @@
   background-color: var(--light);
   display: flex;
   align-items: center;
-  justify-content: right;
+  /* justify-content: right; */
   height: 15vh;
 }
 

@@ -12,6 +12,7 @@
     <div th:each="post : ${posts}">
         <p th:text="${post.imageTitle}" >
     </div>
-    
+    <div th:replace="~{partials :: js}"></div>
+
 </body>
 </html>

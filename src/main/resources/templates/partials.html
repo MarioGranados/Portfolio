@@ -13,6 +13,13 @@
 <!--                               End Header                                -->
 <!-- ----------------------------------------------------------------------- -->
 
+<!-- --------------------------------- js ---------------------------------- -->
+<div th:fragment="js">
+  <script type="text/javascript" th:src="@{js/main.js}"></script>
+</div>
+
+<!-- --------------------------------- js ---------------------------------- -->
+
 <!-- ----------------------------------------------------------------------- -->
 <!--                                 Navbar                                  -->
 <!-- ----------------------------------------------------------------------- -->
@@ -24,14 +31,25 @@
       <a class="nav_link" href="/contact">Contact</a>
       <a class="nav_link" href="/about">About</a>
       <!-- <button id="open_modal_btn" class="btn_primary">Login</button> -->
-      <a href="/login" class="nav_link" sec:authorize="isAnonymous()">Login</a>
-      <a href="/sign-up" sec:authorize="isAnonymous()">Sign Up</a>
+      <a
+        style="justify-content: right"
+        href="/login"
+        class="nav_link"
+        sec:authorize="isAnonymous()"
+        >Login</a
+      >
+      <a
+        style="justify-content: right"
+        href="/sign-up"
+        sec:authorize="isAnonymous()"
+        >Sign Up</a
+      >
       <a class="nav_link" href="/profile" sec:authorize="isAuthenticated()"
         >Profile</a
       >
       <a class="nav_link" href="/post/create" sec:authorize="isAuthenticated()"
-      >Upload</a
-    >
+        >Upload</a
+      >
       <form
         th:action="@{/logout}"
         th:method="post"
@@ -169,7 +187,7 @@
 <div th:fragment="Product_Card" th:each="post : ${post}">
   <div class="card">
     <img
-      th:src="${post.imageUrl}"
+      th:src="${../uploads/dog.jpg}"
       th:alt="${post.imageTitle}"
       class="card_img"
     />
@@ -184,49 +202,6 @@
 <!--                                Card Ends                                -->
 <!-- ----------------------------------------------------------------------- -->
 
-<!-- ----------------------------------------------------------------------- -->
-<!--                                 SIGN UP                                 -->
-<!-- ----------------------------------------------------------------------- -->
-<div th:fragment="Sign_Up">
-  <h1>Create an account</h1>
-  <form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
-
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
-
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
-
-    <input value="Sign me up!" type="submit" />
-  </form>
-</div>
-
-<!-- ----------------------------------------------------------------------- -->
-<!--                              SIGN UP ENDS                               -->
-<!-- ----------------------------------------------------------------------- -->
-
-<!-- ----------------------------------------------------------------------- -->
-<!--                                 SIGN IN                                 -->
-<!-- ----------------------------------------------------------------------- -->
-<div th:fragment="Log_In">
-  <h1>Log In</h1>
-  <div th:if="${param.error}">Invalid Username and Password.</div>
-  <div th:if="${param.logout}">You have been logged out.</div>
-
-  <form th:action="@{/login}" method="post">
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
-  </form>
-</div>
-
-<!-- ----------------------------------------------------------------------- -->
-<!--                              SIGN IN ENDS                               -->
-<!-- ----------------------------------------------------------------------- -->
 
 <!-- ----------------------------------------------------------------------- -->
 <!--                               LOG OUT BTN                               -->

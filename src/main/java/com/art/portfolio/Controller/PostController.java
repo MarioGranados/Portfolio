@@ -57,14 +57,14 @@ public class PostController {
         try {
             uploadedFile.transferTo(destinationFile);
             model.addAttribute("message", "File successfully uploaded!");
-            System.out.println("Sucess");
+            System.out.println("sucess " + destinationFile);
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("message", "Oops! Something went wrong! " + e);
             System.out.println("Error");
         }
         post.setUser(user);
-        post.setImageUrl("images/" + filename);
+        post.setImageUrl(destinationFile.toString());
         postRepo.save(post);
         return "post";
     }
