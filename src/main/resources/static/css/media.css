@@ -16,5 +16,9 @@
     #navbar {
       display: none;
     }
+    .topnav {
+      position: unset;
+      overflow: hidden;
+    }
 
 }

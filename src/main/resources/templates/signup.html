@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head th:replace="~{partials :: head}">
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-      </head>
-<body>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:replace="~{partials :: head}">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
     <nav th:replace="~{partials :: Navbar}"></nav>
 
-    <h1>Create an account</h1>
-    <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+    <div class="card">
+      <h1>Create an account</h1>
+      <form th:action="@{/sign-up}" method="POST" th:object="${user}">
         <label for="username">Username</label>
         <input id="username" th:field="*{username}" type="text" />
 
         <label for="firstName">firstname</label>
-        <input id="firstName" th:field="*{firstName}" type="text"/>
+        <input id="firstName" th:field="*{firstName}" type="text" />
 
         <label for="lastName">lastname</label>
         <input id="lastName" th:field="*{lastName}" type="text" />
@@ -27,8 +31,8 @@
         <input id="password" type="password" th:field="*{password}" />
 
         <input value="Sign me up!" type="submit" />
-    </form>
-    <div th:replace="~{partials :: js}"></div>
-
-</body>
+      </form>
+      <div th:replace="~{partials :: js}"></div>
+    </div>
+  </body>
 </html>

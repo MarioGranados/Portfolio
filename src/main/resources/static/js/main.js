@@ -15,6 +15,14 @@ const openHamburgerMenu = () => {
 
   const navbar = document.getElementById("navbar");
 
+  window.onscroll = function() {
+    if(document.body.scrollTop >= 200 || document.documentElement.scrollTop >= 200) {
+      navbar.style.cssText = `background-color: var(--dark); transition: 300ms; height: 13vh; color: white;`;
+    } else {
+      navbar.style.cssText = `background-color: var(--light); transition: 280ms; height: 15vh; color: black;`;
+    }
+  }
+
   //active navbar showing current page
   let navbarBtns = navbar.getElementsByClassName("nav_link");
   for (let i = 0; i < navbarBtns.length; i++) {
