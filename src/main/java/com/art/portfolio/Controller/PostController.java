@@ -64,7 +64,7 @@ public class PostController {
             System.out.println("Error");
         }
         post.setUser(user);
-        post.setImageUrl(destinationFile.toString());
+        post.setImageUrl("images/" + filename);
         postRepo.save(post);
         return "post";
     }
