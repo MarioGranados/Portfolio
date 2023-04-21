@@ -33,13 +33,13 @@ const openHamburgerMenu = () => {
     });
   }
 
-  openModalButton.onclick = function () {
-    signInModalPopUp.style.display = "block";
-    closeHamburgerMenu();
-  };
-  closeModalButton.onclick = function () {
-    signInModalPopUp.style.display = "none";
-  };
+  // openModalButton.onclick = function () {
+  //   signInModalPopUp.style.display = "block";
+  //   closeHamburgerMenu();
+  // };
+  // closeModalButton.onclick = function () {
+  //   signInModalPopUp.style.display = "none";
+  // };
   //tap anywhere to close modal window
   window.onclick = function (event) {
     if (event.target == modal) {

@@ -8,8 +8,8 @@
   </head>
   <body>
     <nav th:replace="~{partials :: Navbar}"></nav>
-
-    <div class="card">
+    <div class="container" style="margin-top: 15vh">
+        <div class="card">
       <h1>Log In</h1>
       <div th:if="${param.error}">Invalid Username and Password.</div>
       <div th:if="${param.logout}">You have been logged out.</div>
@@ -23,5 +23,8 @@
       </form>
       <div th:replace="~{partials :: js}"></div>
     </div>
+    </div>
+
+    
   </body>
 </html>
