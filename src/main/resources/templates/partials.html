@@ -1,11 +1,12 @@
 <!-- ----------------------------------------------------------------------- -->
 <!--                              Head Partial                               -->
 <!-- ----------------------------------------------------------------------- -->
+
 <head th:fragment="head">
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Art</title>
   <link rel="stylesheet" th:href="@{/css/style.css}" />
   <link rel="stylesheet" th:href="@{css/media.css}" />
 </head>
@@ -24,106 +25,71 @@
 <!--                                 Navbar                                  -->
 <!-- ----------------------------------------------------------------------- -->
 <nav th:fragment="Navbar">
-    <div class="topnav" id="navbar">
+  <nav class="topnav" id="navbar">
+    <div>
       <a class="nav_link active" href="/">Home</a>
       <a class="nav_link" href="/gallery">Gallery</a>
       <a class="nav_link" href="/contact">Contact</a>
       <a class="nav_link" href="/about">About</a>
-      <!-- <button id="open_modal_btn" class="btn_primary">Login</button> -->
-      <a
-        style="justify-content: right"
-        href="/login"
-        class="nav_link"
-        sec:authorize="isAnonymous()"
-        >Login</a
-      >
-      <a
-        style="justify-content: right"
-        href="/sign-up"
-        sec:authorize="isAnonymous()"
-        >Sign Up</a
-      >
-      <a class="nav_link" href="/profile" sec:authorize="isAuthenticated()"
-        >Profile</a
-      >
-      <a class="nav_link" href="/post/create" sec:authorize="isAuthenticated()"
-        >Upload</a
-      >
-      <form
-        th:action="@{/logout}"
-        th:method="post"
-        sec:authorize="isAuthenticated()"
-      >
+      <a class="nav_link" href="/profile" sec:authorize="isAuthenticated()">Profile</a>
+      <a class="nav_link" href="/post/create" sec:authorize="isAuthenticated()">Upload</a>
+    </div>
+    <div>
+      <a style="justify-content: right" href="/login" class="nav_link" sec:authorize="isAnonymous()">Login</a>
+      <a style="justify-content: right" href="/sign-up" sec:authorize="isAnonymous()">Sign Up</a>
+      <form th:action="@{/logout}" th:method="post" sec:authorize="isAuthenticated()">
         <button class="nav_link">Logout</button>
       </form>
     </div>
   </nav>
+</nav>
 
-  <nav id="mobile_navbar">
-    <button onclick="openHamburgerMenu()" class="openbtn">&#9776;</button>
-    <div id="hamburger_menu" class="sidebar">
-      <a
-        href="javascript:void(0)"
-        class="closebtn"
-        onclick="closeHamburgerMenu()"
-        >&times;</a
-      >
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
-      <a href="/login">Login</a>
-      <a href="/sign-up">Sign Up</a>
-      <form th:action="@{/logout}" th:method="post">
-        <button class="nav_link">Logout</button>
-      </form>
-      <!-- ---------------------------- Modal Trigger ---------------------------- -->
-      <button id="open_modal_btn">Login</button>
-      <!-- ---------------------------- Modal Trigger ---------------------------- -->
-    </div>
-  </nav>
-  <!-- ----------------------------------------------------------------------- -->
-  <!--                                  Modal                                  -->
-  <!-- ----------------------------------------------------------------------- -->
-  <div id="modal" class="modal">
-    <!-- ---------------------------- Modal Content ---------------------------- -->
-    <div class="modal-content">
-      <div class="card">
-        <button class="close" id="close_modal_btn">&times;</button>
-        <div class="card_body">
-          <div th:if="${param.error}">Invalid Username and Password.</div>
-          <div th:if="${param.logout}">You have been logged out.</div>
-          <form th:action="@{/login}" method="GET">
-            <div class="d_flex">
-              <label for="username">Username</label>
-              <input
-                type="text"
-                class="form_control"
-                id="username"
-                placeholder="username"
-              />
-              <label for="password">Username</label>
-              <input
-                type="password"
-                class="form_control"
-                id="password"
-                placeholder="password"
-              />
-              <input
-                type="submit"
-                class="btn btn_primary"
-                placeholder="Login"
-              />
-              <p>Don't Have An Account? <a>Sign Up Here</a></p>
-            </div>
-          </form>
-        </div>
+<nav id="mobile_navbar">
+  <button onclick="openHamburgerMenu()" class="openbtn">&#9776;</button>
+  <div id="hamburger_menu" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeHamburgerMenu()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+    <a href="/login">Login</a>
+    <a href="/sign-up">Sign Up</a>
+    <form th:action="@{/logout}" th:method="post">
+      <button class="nav_link">Logout</button>
+    </form>
+    <!-- ---------------------------- Modal Trigger ---------------------------- -->
+    <button id="open_modal_btn">Login</button>
+    <!-- ---------------------------- Modal Trigger ---------------------------- -->
+  </div>
+</nav>
+<!-- ----------------------------------------------------------------------- -->
+<!--                                  Modal                                  -->
+<!-- ----------------------------------------------------------------------- -->
+<div id="modal" class="modal">
+  <!-- ---------------------------- Modal Content ---------------------------- -->
+  <div class="modal-content">
+    <div class="card">
+      <button class="close" id="close_modal_btn">&times;</button>
+      <div class="card_body">
+        <div th:if="${param.error}">Invalid Username and Password.</div>
+        <div th:if="${param.logout}">You have been logged out.</div>
+        <form th:action="@{/login}" method="GET">
+          <div class="d_flex">
+            <label for="username">Username</label>
+            <input type="text" class="form_control" id="username" placeholder="username" />
+            <label for="password">Username</label>
+            <input type="password" class="form_control" id="password" placeholder="password" />
+            <input type="submit" class="btn btn_primary" placeholder="Login" />
+            <p>Don't Have An Account? <a>Sign Up Here</a></p>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-  <!-- ----------------------------------------------------------------------- -->
-  <!--                               Modal Ends                                -->
-  <!-- ----------------------------------------------------------------------- -->
+</div>
+<!-- ----------------------------------------------------------------------- -->
+<!--                               Modal Ends                                -->
+<!-- ----------------------------------------------------------------------- -->
 </nav>
 <!-- ----------------------------------------------------------------------- -->
 <!--                            NavBar Ends Here                             -->
@@ -185,11 +151,7 @@
 <!-- ----------------------------------------------------------------------- -->
 <div th:fragment="Product_Card" th:each="post : ${post}">
   <div class="card">
-    <img
-      th:src="${post.imageUrl}"
-      th:alt="${post.imageTitle}"
-      class="card_img"
-    />
+    <img th:src="${post.imageUrl}" th:alt="${post.imageTitle}" class="card_img" />
     <div class="card_body">
       <p class="card_title" th:text="${post.imageTitle}"></p>
       <p class="lead_text" th:text="${post.imageDesc}"></p>
