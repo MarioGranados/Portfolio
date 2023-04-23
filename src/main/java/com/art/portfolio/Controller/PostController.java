@@ -2,6 +2,7 @@ package com.art.portfolio.Controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.art.portfolio.Model.Category;
 import com.art.portfolio.Model.Post;
 import com.art.portfolio.Model.User;
 import com.art.portfolio.Repository.CategoryRepo;
@@ -33,7 +35,8 @@ public class PostController {
     private final CategoryRepo categoryRepo;
     private final PasswordEncoder passwordEncoder;
 
-    public PostController(UserRepo userRepo, PostRepo postRepo, PasswordEncoder passwordEncoder, CategoryRepo categoryRepo) {
+    public PostController(UserRepo userRepo, PostRepo postRepo, PasswordEncoder passwordEncoder,
+            CategoryRepo categoryRepo) {
         this.postRepo = postRepo;
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
@@ -88,9 +91,33 @@ public class PostController {
         model.addAttribute("posts", posts);
         return "gallery";
     }
+
     @GetMapping("/gallery")
     public String allGallery(Model model) {
         model.addAttribute("post", postRepo.findAll());
         return "gallery";
     }
+
+    @GetMapping("/gallery/{searchQuery}")
+    public String showResults(Model model, @PathVariable String searchQuery) {
+        model.addAttribute("posts", postRepo.findAllByResults(searchQuery));
+        return "gallery";
+    }
+
+    @GetMapping("/gallery/{category}")
+    public String showCategoryResults(Model model, @PathVariable String category) {
+        List<Category> categories = categoryRepo.findAllByCategoryName(category);
+        List<Post> posts = new ArrayList<>();
+        for (int i = 0; i < categories.size(); i++) {
+            posts.add(categories.get(i).getPost());
+        }
+        if (posts.isEmpty()) {
+            model.addAttribute("posts", postRepo.findAll());
+        } else {
+            model.addAttribute("posts", posts);
+
+        }
+        return "gallery";
+    }
+
 }
