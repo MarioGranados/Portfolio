@@ -9,8 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.art.portfolio.Service.UserDetailsLoader;
 
@@ -49,7 +47,7 @@ public class SecurityConfiguration {
               /* Pages that can be viewed without having to log in */
               .and()
               .authorizeHttpRequests()
-              .requestMatchers("/", "/profile", "/gallery/**", "/css/**", "/js/**", "/images/**", "/sign-up", "/profile/{username}", "/post", "/test") // anyone can see the home and the ads pages
+              .requestMatchers("/", "/profile", "/gallery/**", "/css/**", "/js/**", "/images/**", "/sign-up", "/profile/{username}", "/post", "/about") // anyone can see the home and the ads pages
               .permitAll()
               /* Pages that require authentication */
               .and()

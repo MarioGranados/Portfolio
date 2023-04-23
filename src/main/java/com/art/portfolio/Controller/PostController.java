@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.art.portfolio.Model.Post;
 import com.art.portfolio.Model.User;
+import com.art.portfolio.Repository.CategoryRepo;
 import com.art.portfolio.Repository.PostRepo;
 import com.art.portfolio.Repository.UserRepo;
 
@@ -29,12 +30,14 @@ public class PostController {
 
     private final UserRepo userRepo;
     private final PostRepo postRepo;
+    private final CategoryRepo categoryRepo;
     private final PasswordEncoder passwordEncoder;
 
-    public PostController(UserRepo userRepo, PostRepo postRepo, PasswordEncoder passwordEncoder) {
+    public PostController(UserRepo userRepo, PostRepo postRepo, PasswordEncoder passwordEncoder, CategoryRepo categoryRepo) {
         this.postRepo = postRepo;
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
+        this.categoryRepo = categoryRepo;
     }
 
     @PostMapping("/post/create")
@@ -76,6 +79,7 @@ public class PostController {
     }
 
     /* --------------------------------- gallery -------------------------------- */
+
     @GetMapping("/gallery/{username}")
     public String showGallery(Model model, @PathVariable String username) {
         User user = userRepo.findByUsername(username);
@@ -85,7 +89,8 @@ public class PostController {
         return "gallery";
     }
     @GetMapping("/gallery")
-    public String allGallery() {
+    public String allGallery(Model model) {
+        model.addAttribute("post", postRepo.findAll());
         return "gallery";
     }
 }

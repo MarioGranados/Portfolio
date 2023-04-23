@@ -1,41 +1,52 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head th:replace="~{partials :: head}">
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <!-- ----------- id=main gets pushed to the side in mobile menu ------------ -->
-    <div id="main">
-      <!-- ------------------------------- Navbar -------------------------------- -->
-      <div th:replace="~{partials :: Navbar}"></div>
-      <!-- ------------------------------- Navbar -------------------------------- -->
-      <!-- ------------------------------- BANNER -------------------------------- -->
-      <div class="hero_image" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{partials :: head}">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="main">
+    <div th:replace="~{partials :: Navbar}"></div>
+    <section>
+      <div class="hero_image">
         <div class="hero_text">
-          <h1 style="font-size: 50px" class="mb_1">Lorem ipsum dolor sit amet.</h1>
-          <h4 style="font-size:  25px" class="mb_1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque optio nisi explicabo?</h4>
+          <h1 style="font-size: 50px" class="mb_1">
+            Lorem ipsum dolor sit amet.
+          </h1>
+          <h4 style="font-size: 25px" class="mb_1">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque
+            optio nisi explicabo?
+          </h4>
           <button class="btn btn_primary">Contact Me</button>
         </div>
       </div>
-      <!-- ----------------------------- BANNER ENDS ----------------------------- -->
-      <!-- ------------------------------ PRODUCTS ------------------------------- -->
-      <div class="gallery container centered">
+    </section>
+
+    <section style="width: 100%; margin: auto;">
+      <label for="cars">Choose a car:</label>
+      <form>
+        <select name="categories" id="categories">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+        </select>      
+        <input type="submit" value="Submit" />
+
+      </form>
+      <div class="container" style="justify-content: space-evenly">
         <div th:replace="~{partials :: Product_Card}"></div>
       </div>
-      <!-- ------------------------------ PRODUCTS ------------------------------- -->
+    </section>
 
-      <!-- ------------------------------- FOOTER -------------------------------- -->
-      <div th:replace="~{partials :: Footer}"></div>
-      <!-- ------------------------------- FOOTER -------------------------------- -->
-    </div>
+    <div th:replace="~{partials :: Footer}"></div>
+  </div>
 
-    <div th:replace="~{partials :: js}"></div>
-  </body>
+  <div th:replace="~{partials :: js}"></div>
+</body>
+
 </html>

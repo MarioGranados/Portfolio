@@ -36,25 +36,12 @@ window.onscroll = function () {
 };
 
 //active navbar showing current page
-let navbarBtns = navbar.getElementsByClassName("nav_link");
+let navbarBtns = navbar.getElementsByClassName("nav-link");
 for (let i = 0; i < navbarBtns.length; i++) {
-  navbarBtns[i].addEventListener("click", function () {
+  navbarBtns[i].addEventListener('click', function () {
     let current = document.getElementsByClassName("active");
     current[0].className = current[0].className.replace(" active", "");
     this.className += " active";
   });
 }
 
-// openModalButton.onclick = function () {
-//   signInModalPopUp.style.display = "block";
-//   closeHamburgerMenu();
-// };
-// closeModalButton.onclick = function () {
-//   signInModalPopUp.style.display = "none";
-// };
-//tap anywhere to close modal window
-window.onclick = function (event) {
-  if (event.target == modal) {
-    signInModalPopUp.style.display = "none";
-  }
-};

@@ -23,4 +23,9 @@ public class HomePage {
         model.addAttribute("user", userRepo.findAll());
         return "index";
     }
+
+    @GetMapping("/about")
+    public String showAboutPage() {
+        return "About";
+    } 
 }
