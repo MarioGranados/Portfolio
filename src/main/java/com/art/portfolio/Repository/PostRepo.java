@@ -11,6 +11,6 @@ import com.art.portfolio.Model.Post;
 public interface PostRepo extends JpaRepository<Post, Long>{
     List<Post> findByUserId(Long id);
 
-    @Query(value = "SELECT * FROM posts WHERE image_desc = !?", nativeQuery = true)
+    @Query(value = "SELECT * FROM posts WHERE image_desc LIKE = !?", nativeQuery = true)
     List<Post> findAllByResults(@Param("name")String category);
 }

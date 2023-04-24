@@ -1,52 +1,99 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<head th:replace="~{partials :: head}">
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-</head>
-
-<body>
-  <div id="main">
-    <div th:replace="~{partials :: Navbar}"></div>
-    <section>
-      <div class="hero_image">
-        <div class="hero_text">
-          <h1 style="font-size: 50px" class="mb_1">
-            Lorem ipsum dolor sit amet.
-          </h1>
-          <h4 style="font-size: 25px" class="mb_1">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque
-            optio nisi explicabo?
-          </h4>
-          <button class="btn btn_primary">Contact Me</button>
-        </div>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{css/media.css}" /> -->
+    <title>Home</title>
+    <style>
+      :root {
+        --dark-bg: black;
+        --light-text: white;
+        --link-hover: red;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .mobileNavbar {
+        background-color: var(--dark-bg);
+        padding: 3rem 2rem;
+        top: 0;
+        right: 0;
+        color: var(--light-text);
+        overflow: hidden;
+        z-index: 99;
+        transition: transform .3s;
+      }
+      .nav-link a {
+        text-decoration: none;
+        color: var(--light-text);
+        padding: 2px 5px;
+        transition: .2s;
+      }
+      .nav-link {
+        margin-bottom: 15px;
+      }
+      .nav-link a:hover {
+        background-color: var(--link-hover);
+        transition: .2s;
+        border-radius: 2px;
+      }
+      .nav-item li {
+        list-style: none;
+        font-size: 25px;
+      }
+      .login-buttons {
+        display: flex;
+        flex-direction: row; 
+        justify-content: space-around;
+        margin: auto;
+        width: 100%;
+      }
+      .login-btn, .signup-btn {
+        border: 1px solid #ffffff;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <button id="openBtn" onclick="openNavbar()">Open Menu</button>
+      <div class="mobileNavbar" id="mobileNavbar">
+      <button id="closeBtn" onclick="closeNavbar()">Close Menu</button>
+        <ul class="nav-item login-buttons">
+          <li class="nav-link"><a class="login-btn" href="/">Login</a></li>
+          <li class="nav-link"><a class="signup-btn" href="/">SignUp</a></li>
+        </ul>
+        <ul class="nav-item">
+          <li class="nav-link"><a href="/">LOGO</a></li>
+          <li class="nav-link"><a href="/">Home</a></li>
+          <li class="nav-link"><a href="/">Gallery</a></li>
+          <li class="nav-link"><a href="/">About</a></li>
+        </ul>
       </div>
-    </section>
+    </nav>
+    <script>
+      const openBtn = document.getElementById("openBtn");
+      const closeBtn = document.getElementById("closeBtn");
+      const mobileNavbar = document.getElementById("mobileNavbar");
 
-    <section style="width: 100%; margin: auto;">
-      <label for="cars">Choose a car:</label>
-      <form>
-        <select name="categories" id="categories">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="opel">Opel</option>
-          <option value="audi">Audi</option>
-        </select>      
-        <input type="submit" value="Submit" />
-
-      </form>
-      <div class="container" style="justify-content: space-evenly">
-        <div th:replace="~{partials :: Product_Card}"></div>
-      </div>
-    </section>
-
-    <div th:replace="~{partials :: Footer}"></div>
-  </div>
-
-  <div th:replace="~{partials :: js}"></div>
-</body>
-
+      function openNavbar () {
+        mobileNavbar.style.transform = "translateX(0)";
+        openBtn.style.display = 'none';
+        closeBtn.style.display = 'unset';
+      };
+      function closeNavbar () {
+        mobileNavbar.style.transform = "translateX(100%)";
+        closeBtn.style.display = "none"
+        openBtn.style.display = 'unset';
+      };
+    </script>
+  </body>
 </html>

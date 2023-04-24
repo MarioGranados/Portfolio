@@ -20,16 +20,16 @@
           th:object="${post}"
           enctype="multipart/form-data"
         >
-          <label for="title">title</label>
+          <label for="title">Title</label>
           <input type="text" id="title" th:field="*{imageTitle}" />
 
           <label for="file">Upload a file!</label>
           <input id="file" name="file" type="file" />
 
-          <label for="desc">desc</label>
+          <label for="desc">Description</label>
           <input type="text" id="desc" th:field="*{imageDesc}" />
 
-          <label for="price">price</label>
+          <label for="price">Price</label>
           <input type="text" id="price" th:field="*{imagePrice}" />
 
           <input value="create post!" type="submit" />
