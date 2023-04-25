@@ -38,7 +38,7 @@ public class PostController {
        
     }
 
-    @PostMapping("/post/create")
+    @PostMapping("/upload")
     public String createPost(@ModelAttribute Post post, @RequestParam(name = "file") MultipartFile uploadedFile,
             Model model) {
 
@@ -71,7 +71,7 @@ public class PostController {
         return "post";
     }
 
-    @GetMapping("/post/create")
+    @GetMapping("/upload")
     public String getCreatePostForm(Model model) {
         model.addAttribute("post", new Post());
         return "post";

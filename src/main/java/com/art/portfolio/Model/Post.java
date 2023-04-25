@@ -1,17 +1,36 @@
 package com.art.portfolio.Model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
 @Table(name = "posts")
 @Entity
 public class Post {
+
+    public List<Category> getCategories() {
+        return this.categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Tag> getTags() {
+        return this.tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
 
     public String getImageUrl() {
         return this.imageUrl;
@@ -81,4 +100,11 @@ public class Post {
 
     @ManyToOne
     User user;
+
+    @OneToMany
+    List<Category> categories;
+
+    @OneToMany
+    List<Tag> tags;
+
 }

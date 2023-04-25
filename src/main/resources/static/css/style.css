@@ -1,147 +1,183 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 :root {
-  --primary: #30638E;
-  --secondary: #D1495B;
-  --success: #003D5B;
-  --warning: #EDAE49;
-  --danger: #D1495B;
-  --light: #fff;
-  --dark: #000;
-
-  --hover:red;
-  --active: #00798C;
-
-}
-.container {
-  width: 100%;
-  padding: 15px 0;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  align-content: center;
+  --dark-bg: black;
+  --light-text: white;
+  --link-hover: red;
+  --btn-hover: red;
 }
 
-.centered {
- display: flex;
- justify-content: center;
- align-items: center;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-/* margins */
-.mb_1 {
-  margin-bottom: 14px;
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
 }
 
-/* --------------------------------- Buttons --------------------------------- */
-
-.btn, input[type=submit] {
-  margin: 15px auto;
-  padding: 14px 26px;
-  border: none;
-  border-radius: 10px;
-  transition: 280ms;
-  font-size: 20px;
-}
-
-.btn_primary {
-  background-color: var(--primary);
-  transition: 280ms;
-  color:var(--light);;
-}
-.btn_primary:hover {
-  background-color: var(--hover);
-  color: var(--dark);
-  transition: 280ms;
-}
-
-/* --------------------------------- Buttons ends ---------------------------- */
-
-
-/* --------------------------------- NAVBAR --------------------------------- */
-
-#mobile_navbar {
-  display: none;
-}
-
-.navbar {
-  background-color: var(--light);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  width: 100%;
-  margin: auto;
-  background-color: var(--light);
+.mobileNavbar {
+  background-color: var(--dark-bg);
+  padding: 3rem 2rem;
+  top: 10vh;
+  right: 0;
+  color: var(--light-text);
+  overflow: hidden;
+  z-index: 99;
+  transition: transform 0.3s;
+  transform: translateX(100%);
   position: fixed;
-  top: 0;
-  height: 15vh;
+  height: 100vh;
+}
+
+.nav-link a {
+  text-decoration: none;
+  color: var(--light-text);
+  padding: 2px 5px;
+  transition: 0.2s;
 }
 
 .nav-link {
+  margin-bottom: 15px;
+}
+
+.nav-link a:hover {
+  color: var(--link-hover);
+  transition: 0.2s;
+  border-radius: 2px;
+}
+
+.nav-item li {
+  list-style: none;
+  font-size: 25px;
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: auto;
+  width: 100%;
+}
+
+.login-btn,
+.signup-btn {
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  margin-bottom: 0;
+}
+.header-opposite {
+  color: var(--light-text);
+  transition: .2s;
+  background-color: var(--dark-bg);
+}
+.header-opposite .btn {
+  color: var(--light-text);
+  cursor: pointer;
+}
+.header-opposite .btn:hover {
+  color: var(--link-hover);
+}
+
+.btn {
+  padding: 12px 16px;
+  margin: 20px 8px;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
-  font-size: 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  border-style: none;
+  transition: .2s;
 }
 
-.nav-link button {
-  background-color: var(--light);
-  border: none;
-  color: black;
+.btn:hover {
+  transition: .2s;
 }
 
-.nav-link:hover, .nav-link button:hover {
-  color: var(--secondary);
-  transition: 280ms;
+.btn-outline {
+  border-style: solid;
 }
 
-.nav-link a.active, .nav-link button.active {
-  color: var(--primary);
-  transition: 280ms;
+input[type=search] {
+  width: 100%;
+  margin: 10px auto;
+  padding: 8px 10px 8px 4px;
+  font-size: 28px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.categories {
+  display: flex;
+  overflow-x: auto;
+}
+.filters {
+  width: 100;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.w-100 {
+  width: 100% !important;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  width: 15rem;
+  margin: 8px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.card:nth-child(3n+3) {
+  flex-grow: 3;
+}
+.card .card-image:nth-child(3n+3) {
+  height: 200px;
+}
+.card:nth-child(2n+2) {
+  flex-grow: 9;
+}
+.card .card-image:nth-child(2n+2) {
+  height: 100px;
 }
 
-/* ------------------------------- NAVBAR ENDS ------------------------------ */
-  /* product card */
-  .card {
-    border-radius: 5px;
-    width: 20rem;
-    margin: 15px 24px;
-    padding: 12px 16px;
-    background-color: #fff;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    min-height: 10rem;
-    transition: 250ms;
-  }
-    
-  .card-body {
-    padding: 15px;
-    margin: 5px 0;
-  }
-  .card-img {
-    width: 100%;
-    margin: auto;
-  }
-  .d_flex {
-      display: flex;
-  }
-  .gallery {
-    margin: 12px 24px;
-    width: 20rem;
-    border-radius: 5px;
-  }
-  .gallery-image {
-    width: 100%;
-    margin: auto;
-  }
+.card-image {
+  width: 100%;
+}    
 
-  /* product card ends */
+.card-title {
+  font-size: 24px;
+}
+.card-body {
+  width: 100%;
+}
+.pricing {
+  font-weight: bold;
+}
 
-  /* footer */
+/* footer */
 
 footer {
   line-height: 1.5;
@@ -233,155 +269,4 @@ ul{
 }
 }
 
-
-/* footer ends */
-
-/* hamburger menu */
-
-/* The sidebar menu */
-.sidebar {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 999; /* Stay on top */
-  top: 0;
-  right: 0;
-  background-color: #111; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
-}
-
-/* The sidebar links */
-.sidebar a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidebar a:hover {
-  color: #f1f1f1;
-}
-
-/* Position and style the close button (top right corner) */
-.sidebar .closebtn {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  font-size: 36px;
-  margin-right: 50px;
-}
-
-/* The button used to open the sidebar */
-.openbtn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 999;
-  font-size: 20px;
-  cursor: pointer;
-  background-color: var(--dark);
-  color: var(--light);
-  padding: 10px 15px;
-  border: none;
-}
-
-.openbtn:hover {
-  background-color: #444;
-}
-
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-right .5s;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
-/* hamburger ends here */
-
-
-/* ================modal sign up ==================== */
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 25vh;
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
-/* ================modal sign up ==================== */
-
-.hero_image {
-  background-image: linear-gradient(rgba(0, 0, 129, 0.904), rgba(73, 3, 73, 0.542));
-  width:100%;
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size:cover;
-  background-attachment: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero_text {
-  text-align: center;
-  color: var(--light);
-}
-
-
-/* ---------------------------------- forms --------------------------------- */
-
-input[type=text], input[type=password], input[type=email], input[type=cel] {
-  padding: 12px 26px;
-  margin: 8px auto;
-  display: inline-block;
-  border: 1px solid black;
-  border-radius: 4px;
-  width: 100%;
-}
-input[type=file] {
-  padding: 12px 24px;
-  margin: 10px auto;
-  display: inline-block;
-  width: 100%;
-}
 
