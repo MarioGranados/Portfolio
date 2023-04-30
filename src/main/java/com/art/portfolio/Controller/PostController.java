@@ -3,6 +3,7 @@ package com.art.portfolio.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,13 +14,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.art.portfolio.Model.Post;
+import com.art.portfolio.Model.Tag;
 import com.art.portfolio.Model.User;
 import com.art.portfolio.Repository.PostRepo;
 import com.art.portfolio.Repository.UserRepo;
+
 
 @Controller
 public class PostController {
@@ -39,8 +44,12 @@ public class PostController {
     }
 
     @PostMapping("/upload")
-    public String createPost(@ModelAttribute Post post, @RequestParam(name = "file") MultipartFile uploadedFile,
-            Model model) {
+    public String createPost(
+        @RequestParam(name = "file") MultipartFile uploadedFile,
+        @RequestParam(name = "tag") String tag,
+        @ModelAttribute Post post) {
+        
+            System.out.println(tag);
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -57,14 +66,11 @@ public class PostController {
 
         try {
             uploadedFile.transferTo(destinationFile);
-            model.addAttribute("message", "File successfully uploaded!");
             System.out.println("sucess " + destinationFile);
         } catch (IOException e) {
             e.printStackTrace();
-            model.addAttribute("message", "Oops! Something went wrong! " + e);
             System.out.println("Error");
         }
-
         post.setUser(user);
         post.setImageUrl("images/" + filename);
         postRepo.save(post);

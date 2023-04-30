@@ -53,7 +53,7 @@ public class SecurityConfiguration {
               .and()
               .authorizeHttpRequests()
               .requestMatchers(
-                      "/upload", // only authenticated users can create ads
+                      "/upload/**", // only authenticated users can create ads
                       "/ads/{id}/edit" // only authenticated users can edit ads
               )
               .authenticated()

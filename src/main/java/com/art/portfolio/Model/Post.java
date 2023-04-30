@@ -64,11 +64,11 @@ public class Post {
         this.imageDesc = imageDesc;
     }
 
-    public Long getImagePrice() {
+    public String getImagePrice() {
         return this.imagePrice;
     }
 
-    public void setImagePrice(Long imagePrice) {
+    public void setImagePrice(String imagePrice) {
         this.imagePrice = imagePrice;
     }
 
@@ -96,7 +96,7 @@ public class Post {
     private String imageDesc;
 
     @Column
-    private Long imagePrice;
+    private String imagePrice;
 
     @ManyToOne
     User user;

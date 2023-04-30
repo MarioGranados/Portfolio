@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html
+  lang="en"
   xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
@@ -9,8 +10,6 @@
 </head>
   <body>
     <nav th:replace="~{partials :: navbar}"></nav>
-    <div class="container" style="margin-top: 15vh">
-      <div class="card">
         <h1>Upload</h1>
         <form
           th:action="@{/upload}"
@@ -20,22 +19,37 @@
         >
           <label for="title">Title</label>
           <input type="text" id="title" th:field="*{imageTitle}" />
+          <br/>
 
           <label for="file">Upload a file!</label>
           <input id="file" name="file" type="file" />
+          <br/>
+
+          <label for="tag">Tags</label>
+          <input id="tag" name="tag" type="tag" />
+          <span style="display: none" id="hidden_form_text">Separate Tags by Commas</span>
+          <br/>
 
           <label for="desc">Description</label>
           <input type="text" id="desc" th:field="*{imageDesc}" />
+          <br/>
 
           <label for="price">Price</label>
           <input type="text" id="price" th:field="*{imagePrice}" />
+          <br/>
 
-          <input value="create post!" type="submit" />
+          <input type="submit" id="create"/>
         </form>
-      </div>
       <div th:replace="~{partials :: Footer}"></div>
-
       <div th:replace="~{partials :: js}"></div>
-    </div>
+      <script>
+        const tagFormInput = document.getElementById('tag');
+        const hiddenText = document.getElementById('hidden_form_text');
+
+        tagFormInput.onclick = function () {
+          hiddenText.style.display = 'unset';
+          hiddenText.style.transition = '280ms'
+        }
+      </script>
   </body>
 </html>

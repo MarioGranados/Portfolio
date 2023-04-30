@@ -7,12 +7,10 @@
 <body>
   <nav th:replace="~{partials :: navbar}"></nav>
   
-  <section id="categories" class="categories">
-    <button class="btn btn-outline">Lorem, ipsum.</button>
-    <button class="btn btn-outline">Lorem, ipsum.</button>
-    <button class="btn btn-outline">Lorem, ipsum.</button>
-    <button class="btn btn-outline">Lorem, ipsum.</button>
-    <button class="btn btn-outline">Lorem, ipsum.</button>
+  <section id="categories" class="categories" th:each="categories : ${categories}">
+    <button class="btn btn-outline">
+      <span th:text="${categories.category}"></span>
+    </button>
   </section>
 
   <section class="filters">
