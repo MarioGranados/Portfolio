@@ -2,6 +2,8 @@ package com.art.portfolio.Controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,12 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.art.portfolio.Model.Category;
 import com.art.portfolio.Model.Post;
 import com.art.portfolio.Model.Tag;
 import com.art.portfolio.Model.User;
+import com.art.portfolio.Repository.CategoryRepo;
 import com.art.portfolio.Repository.PostRepo;
+import com.art.portfolio.Repository.TagRepo;
 import com.art.portfolio.Repository.UserRepo;
-
 
 @Controller
 public class PostController {
@@ -34,23 +38,32 @@ public class PostController {
 
     private final UserRepo userRepo;
     private final PostRepo postRepo;
+    private final CategoryRepo categoryRepo;
     private final PasswordEncoder passwordEncoder;
+    private final TagRepo tagRepo;
 
-    public PostController(UserRepo userRepo, PostRepo postRepo, PasswordEncoder passwordEncoder) {
+    public PostController(UserRepo userRepo,
+            PostRepo postRepo,
+            PasswordEncoder passwordEncoder,
+            CategoryRepo categoryRepo,
+            TagRepo tagRepo) {
         this.postRepo = postRepo;
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
-       
+        this.categoryRepo = categoryRepo;
+        this.tagRepo = tagRepo;
+
     }
 
     @PostMapping("/upload")
     public String createPost(
         @RequestParam(name = "file") MultipartFile uploadedFile,
         @RequestParam(name = "tag") String tag,
+        @RequestParam(name = "category") String category,
         @ModelAttribute Post post) {
-        
-            System.out.println(tag);
 
+            System.out.println("category" + category);
+        
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String filename = uploadedFile.getOriginalFilename();
@@ -71,6 +84,27 @@ public class PostController {
             e.printStackTrace();
             System.out.println("Error");
         }
+
+        if(!tag.isEmpty()) {
+            List<String> separatedByCommas = Arrays.asList(tag.split(", "));
+            List<Tag> tags = new ArrayList<>();
+            for(int i = 0; i < separatedByCommas.size(); i++) {
+                tags.add(new Tag(separatedByCommas.get(i)));
+                tagRepo.save(tags.get(i));
+            }
+            post.setTags(tags);
+        }
+
+        if(!category.isEmpty()) {
+            List<String> separatedByCommas = Arrays.asList(category.split(", "));
+            List<Category> categories = new ArrayList<>();
+            for(int i = 0; i < separatedByCommas.size(); i++) {
+                categories.add(new Category(separatedByCommas.get(i)));
+                categoryRepo.save(categories.get(i));
+            }
+            post.setCategories(categories);
+        }
+
         post.setUser(user);
         post.setImageUrl("images/" + filename);
         postRepo.save(post);

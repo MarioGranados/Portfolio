@@ -11,7 +11,11 @@ import jakarta.persistence.Table;
 @Table(name = "categories")
 public class Category {
 
-    Category() {}
+    public Category() {}
+
+    public Category(String category) {
+        this.category = category;
+    }
 
     public Long getId() {
         return this.id;
