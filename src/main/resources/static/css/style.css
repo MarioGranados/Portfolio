@@ -3,6 +3,7 @@
   --light-text: white;
   --link-hover: red;
   --btn-hover: red;
+  --btn-primary: blue;
 }
 
 * {
@@ -99,6 +100,9 @@
   background-color: transparent;
   border-style: none;
   transition: .2s;
+}
+.btn {
+  background-color: var(--btn-primary);
 }
 
 .btn:hover {
