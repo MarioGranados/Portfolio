@@ -10,7 +10,9 @@
 </head>
   <body>
     <nav th:replace="~{partials :: navbar}"></nav>
-        <h1>Upload</h1>
+    <div class="container centered" style="margin-top: 10vh;">
+      <div class="card card-border">
+      <h1>Upload</h1>
         <form
           th:action="@{/upload}"
           method="POST"
@@ -43,8 +45,12 @@
           <input type="text" id="price" th:field="*{imagePrice}" />
           <br/>
 
-          <input type="submit" id="create"/>
+          <input class="btn btn-primary" type="submit" id="create"/>
         </form>
+    </div>
+    </div>
+    
+        
       <div th:replace="~{partials :: Footer}"></div>
       <div th:replace="~{partials :: js}"></div>
       <script>

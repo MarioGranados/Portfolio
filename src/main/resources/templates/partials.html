@@ -41,7 +41,7 @@
         <li class="nav-link" sec:authorize="isAuthenticated()"><a href="/upload">Upload</a></li>
         <li class="nav-link" sec:authorize="isAuthenticated()">
           <form th:action="@{/logout}" th:method="post">
-            <a href="/profile">Sign Out</a>
+            <button type="submit" class="nav-link">Sign Out</button>
           </form>
         </li>
       </ul>
@@ -60,37 +60,37 @@
         <div class="footer-col">
           <h4>About</h4>
           <ul>
-            <li><a href="#">Fan Art</a></li>
-            <li><a href="#">Our Services</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="/fan-art">Fan Art</a></li>
+            <!-- <li><a href="#">Our Services</a></li> -->
+            <!-- <li><a href="#">Privacy Policy</a></li> -->
           </ul>
         </div>
         <div class="footer-col">
           <h4>Help</h4>
           <ul>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="/FAQ">FAQ</a></li>
             <li><a href="#">Downloads</a></li>
-            <li><a href="#">Returns</a></li>
-            <li><a href="#">payment options</a></li>
+            <!-- <li><a href="#">Returns</a></li> -->
+            <!-- <li><a href="#">payment options</a></li> -->
           </ul>
         </div>
         <div class="footer-col">
           <h4>Gallery</h4>
           <ul>
-            <li><a href="#">Theme Art</a></li>
-            <li><a href="#">WallPapers</a></li>
-            <li><a href="#">Custom</a></li>
-            <li><a href="#">Comissions</a></li>
+            <li><a href="/theme-art">Theme Art</a></li>
+            <li><a href="/wallpapers">WallPapers</a></li>
+            <!-- <li><a href="/">Custom</a></li> -->
+            <!-- <li><a href="/">Comissions</a></li> -->
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Social Media</h4>
+          <!-- <h4>Social Media</h4>
           <div class="social-links">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

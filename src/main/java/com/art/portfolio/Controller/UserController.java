@@ -1,5 +1,8 @@
 package com.art.portfolio.Controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -31,9 +34,16 @@ public class UserController {
 
     @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute User user){
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        userRepo.save(user);
+        Pattern pattern = Pattern.compile(("[^a-zA-Z]"));
+        Matcher matcher = pattern.matcher(user.getPassword());
+        if(matcher.find() && user.getPassword().length() > 8) {
+            System.out.println("user was created");
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
+            userRepo.save(user);
+        } else {
+            System.out.println("password not strong enough");
+        }
         return "redirect:/login";
     }
     
