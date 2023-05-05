@@ -2,14 +2,25 @@ package com.art.portfolio.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Table
 @Entity(name = "tags")
 public class Tag {
+
+    public Post getPost() {
+        return this.post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
 
     public Tag() {}
 
@@ -39,4 +50,7 @@ public class Tag {
 
     @Column
     private String tag;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    Post post;
 }

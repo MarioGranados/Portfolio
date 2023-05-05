@@ -8,9 +8,9 @@
   <nav th:replace="~{partials :: navbar}"></nav>
   
   <section id="categories" class="categories" th:each="categories : ${categories}">
-    <button class="btn btn-outline" style="margin: auto;">
+    <a th:href="${categories.category}" class="btn btn-outline" style="margin: auto;">
       <span th:text="${categories.category}"></span>
-    </button>
+    </a>
   </section>
 
   <section class="filters">

@@ -13,4 +13,5 @@ public interface PostRepo extends JpaRepository<Post, Long>{
 
     @Query(value = "SELECT * FROM posts WHERE image_desc LIKE = !?", nativeQuery = true)
     List<Post> findAllByResults(@Param("name")String category);
+
 }

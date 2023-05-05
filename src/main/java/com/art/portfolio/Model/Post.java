@@ -2,8 +2,10 @@ package com.art.portfolio.Model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -83,7 +85,7 @@ public class Post {
     public Post() {}
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -98,13 +100,13 @@ public class Post {
     @Column
     private String imagePrice;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     User user;
 
-    @OneToMany
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Category> categories;
 
-    @OneToMany
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Tag> tags;
 
 }
