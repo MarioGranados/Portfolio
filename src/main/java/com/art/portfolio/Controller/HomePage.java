@@ -26,7 +26,6 @@ public class HomePage {
     @GetMapping("/")
     public String getHomePage(Model model) {
         model.addAttribute("post", postRepo.findAll());
-        model.addAttribute("user", userRepo.findAll());
         model.addAttribute("categories", categoryRepo.findAll());
         return "index";
     }

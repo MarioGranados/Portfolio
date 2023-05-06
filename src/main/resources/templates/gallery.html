@@ -1,13 +1,24 @@
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
   <head>
     <head th:replace="~{partials :: head}"></head>
     <title>Art Portfolio</title>
   </head>
-<body>
+  <body>
     <nav th:replace="~{partials :: navbar}"></nav>
-    <div class="container" style="margin-top: 15vh;">
-            <div class="gallery container centered">
+    <section id="categories" class="categories" th:each="categories : ${categories}">
+      <a th:href="@{|/category/${categories.category}|}" class="btn btn-outline" style="margin: auto;">
+        <span th:text="${categories.category}"></span>
+      </a>
+    </section>
+    <div class="container" style="margin-top: 15vh">
+      <div class="gallery container centered">
         <div th:replace="~{partials :: gallery}"></div>
       </div>
     </div>
@@ -15,6 +26,5 @@
     <div th:replace="~{partials :: Footer}"></div>
 
     <div th:replace="~{partials :: js}"></div>
-
-</body>
+  </body>
 </html>

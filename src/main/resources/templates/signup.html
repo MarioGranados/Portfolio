@@ -141,7 +141,7 @@
       }
     </script>
 
-    <!-- select * from posts p left join categories c on p.post_id = c.category_id and exists (select * from categories where category = 'asdflkj')-->
+    <!-- select * from posts p left join categories c on p.post_id = c.category_id where c.category =  -->
 
     <script th:replace="~{partials :: js}"></script>
   </body>
