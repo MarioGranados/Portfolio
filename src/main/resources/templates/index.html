@@ -7,10 +7,16 @@
 <body>
   <nav th:replace="~{partials :: navbar}"></nav>
   
-  <section id="categories" class="categories" th:each="categories : ${categories}">
-    <a th:href="@{|/category/${categories.category}|}" class="btn btn-outline" style="margin: auto;">
+  <section id="categories" class="categories">
+    <!-- <a th:href="@{|/category/${categories.category}|}" class="btn btn-outline" style="margin: auto;">
       <span th:text="${categories.category}"></span>
-    </a>
+    </a> -->
+    <span th:each="categories : ${categories}">
+      <form action="GET" th:action="@{|/category/${categories.category}|}">
+        <input class="btn btn-outline" type="submit" th:value="${categories.category}"/>
+      </form>
+    </span>
+
   </section>
 
   <section class="filters">
