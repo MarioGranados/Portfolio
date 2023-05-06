@@ -103,11 +103,11 @@
 
 <div th:fragment="gallery" th:each="post : ${post}">
   <div class="card">
-    <img class="card-image" th:src="${post.imageUrl}" th:alt="${post.imageTitle}">
+    <img class="card-image" th:src="${post.postUrl}" th:alt="${post.postTitle}">
     <div class="card-body">
-      <div class="card-title"><span th:text="${post.imageTitle}"></span></div>
-      <p th:text="${post.imageDesc}"></p>
-      <div class="pricing"><span th:text="${post.imagePrice}"></span></div>
+      <div class="card-title"><span th:text="${post.postTitle}"></span></div>
+      <p th:text="${post.postDescription}"></p>
+      <div class="pricing"><span th:text="${post.postPrice}"></span></div>
     </div>
   </div>
 </div>

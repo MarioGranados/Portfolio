@@ -1,5 +1,6 @@
 package com.art.portfolio.Model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,6 +14,14 @@ import jakarta.persistence.Table;
 @Table
 @Entity(name = "tags")
 public class Tag {
+
+    public Long getTagId() {
+        return this.tagId;
+    }
+
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
+    }
 
     public Post getPost() {
         return this.post;
@@ -28,14 +37,6 @@ public class Tag {
         this.tag = tag;
     }
 
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getTag() {
         return this.tag;
     }
@@ -44,13 +45,13 @@ public class Tag {
         this.tag = tag;
     }
     
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long id;
+    private Long tagId;
 
     @Column
     private String tag;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     Post post;
 }

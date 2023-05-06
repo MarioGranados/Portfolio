@@ -9,18 +9,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.art.portfolio.Repository.CategoryRepo;
+import com.art.portfolio.Repository.PostRepo;
 
 @Controller
 public class CategoryController {
     private final CategoryRepo categoryRepo;
+    private final PostRepo postRepo;
 
-    public CategoryController(CategoryRepo categoryRepo) {
+    public CategoryController(CategoryRepo categoryRepo, PostRepo postRepo) {
         this.categoryRepo = categoryRepo;
+        this.postRepo = postRepo;
     }
 
-    @GetMapping("/{category}") 
-    public String getCategories(@PathVariable String category, Model model){
-        model.addAttribute("categories", categoryRepo.findAll());
+    @GetMapping("/category") 
+    public String getCategories(Model model){
+        System.out.println("got to here");
+        model.addAttribute("post", postRepo.findAllByCategories());
         return "gallery";  
     }
 }

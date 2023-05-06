@@ -18,6 +18,46 @@ import jakarta.persistence.Table;
 @Entity
 public class Post {
 
+    public Long getPostId() {
+        return this.postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
+    public String getPostTitle() {
+        return this.postTitle;
+    }
+
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
+    }
+
+    public String getPostUrl() {
+        return this.postUrl;
+    }
+
+    public void setPostUrl(String postUrl) {
+        this.postUrl = postUrl;
+    }
+
+    public String getPostDescription() {
+        return this.postDescription;
+    }
+
+    public void setPostDescription(String postDescription) {
+        this.postDescription = postDescription;
+    }
+
+    public String getPostPrice() {
+        return this.postPrice;
+    }
+
+    public void setPostPrice(String postPrice) {
+        this.postPrice = postPrice;
+    }
+
     public List<Category> getCategories() {
         return this.categories;
     }
@@ -34,46 +74,6 @@ public class Post {
         this.tags = tags;
     }
 
-    public String getImageUrl() {
-        return this.imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getImageTitle() {
-        return this.imageTitle;
-    }
-
-    public void setImageTitle(String imageTitle) {
-        this.imageTitle = imageTitle;
-    }
-
-    public String getImageDesc() {
-        return this.imageDesc;
-    }
-
-    public void setImageDesc(String imageDesc) {
-        this.imageDesc = imageDesc;
-    }
-
-    public String getImagePrice() {
-        return this.imagePrice;
-    }
-
-    public void setImagePrice(String imagePrice) {
-        this.imagePrice = imagePrice;
-    }
-
     public User getUser() {
         return this.user;
     }
@@ -86,27 +86,27 @@ public class Post {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long postId;
 
     @Column
-    private String imageTitle;
+    private String postTitle;
 
     @Column
-    private String imageUrl;
+    private String postUrl;
 
     @Column
-    private String imageDesc;
+    private String postDescription;
 
     @Column
-    private String imagePrice;
+    private String postPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    User user;
+    @ManyToOne
+    private User user;
 
-    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Category> categories;
+    @OneToMany
+    private List<Category> categories;
 
-    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Tag> tags;
+    @OneToMany
+    private List<Tag> tags;
 
 }

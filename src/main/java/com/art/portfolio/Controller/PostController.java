@@ -103,10 +103,11 @@ public class PostController {
                 categoryRepo.save(categories.get(i));
             }
             post.setCategories(categories);
+            
         }
 
         post.setUser(user);
-        post.setImageUrl("images/" + filename);
+        post.setPostUrl("images/" + filename);
         postRepo.save(post);
         return "post";
     }

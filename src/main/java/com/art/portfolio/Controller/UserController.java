@@ -43,6 +43,7 @@ public class UserController {
             userRepo.save(user);
         } else {
             System.out.println("password not strong enough");
+            return "redirect:/sign-up";
         }
         return "redirect:/login";
     }
