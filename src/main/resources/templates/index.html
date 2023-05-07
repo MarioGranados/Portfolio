@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
+
   <head th:replace="~{partials :: head}"></head>
   <title>Art Portfolio</title>
 </head>
+
 <body>
   <nav th:replace="~{partials :: navbar}"></nav>
-  
-  <section id="categories" class="categories">
-    <!-- <a th:href="@{|/category/${categories.category}|}" class="btn btn-outline" style="margin: auto;">
-      <span th:text="${categories.category}"></span>
-    </a> -->
-    <span th:each="categories : ${categories}">
-      <form action="GET" th:action="@{|/category/${categories.category}|}">
-        <input class="btn btn-outline" type="submit" th:value="${categories.category}"/>
-      </form>
-    </span>
 
+  <section id="categories" class="categories">
+    <div class="row">
+        <div class="col" th:each="categories : ${categories}">
+          <form action="GET" th:action="@{|/category/${categories.category}|}">
+            <input class="btn btn-outline-dark" type="submit" th:value="${categories.category}" />
+          </form>
+        </div>
+    </div>
+  </section>
+
+  <section id="users">
+    <div class="row">
+      <div class="col" th:each="user : ${users}">
+        <form action="GET" th:action="@{|/profile/${user.username}|}">
+          <input class="btn btn-outline-dark" type="submit" th:value="${user.username}" />
+        </form>
+      </div>
+    </div>
   </section>
 
   <section class="filters">
-    <button class="btn btn-outline w-100">Filters</button>
+    <button class="btn btn-outline-dark w-100">Filters</button>
   </section>
 
-  <section class="gallery">
-    <div th:replace="~{partials :: gallery}"></div>
-  </section>
+  <div class="container px-4 py-5" id="custom-cards">
+    <section class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+      <div th:replace="~{partials :: gallery}"></div>
+    </section>
+  </div>
 
   <footer th:replace="~{partials :: footer}"></footer>
-  
+
   <script th:replace="~{partials :: js}"></script>
 </body>
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+  <head th:replace="~{partials :: head}"></head>
+  <title>Art Portfolio</title>
+</head>
+
+<body>
+
+  <nav th:replace="~{partials :: navbar}"></nav>
+  <div class="container">
+    <h3 class="text-center">Are you an artist or an enthusiast?</h3>
+
+    <div class="row d-flex justify-content-around">
+        <div class="col">
+          <div class="card">
+            <div class="card-body text-center">
+              <p class="text-lead">
+                I'm here to check out and support artists
+              </p>
+              <a class="btn btn-primary" href="/support" type="submit">I want to support artists</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body text-center">
+              <p class="text-lead">
+                I'm here to contribute artwork for profit and nonprofit
+              </p>
+              <a class="btn btn-primary" href="/sign-up" type="submit">I want to contribute</a>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+  <nav th:replace="~{partials :: footer}"></nav>
+  <nav th:replace="~{partials :: js}"></nav>
+
+
+</body>
+
+</html>

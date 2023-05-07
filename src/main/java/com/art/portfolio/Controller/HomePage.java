@@ -27,6 +27,7 @@ public class HomePage {
     public String getHomePage(Model model) {
         model.addAttribute("post", postRepo.findAll());
         model.addAttribute("categories", categoryRepo.findAll());
+        model.addAttribute("users", userRepo.findAll());
         return "index";
     }
 

@@ -1,10 +1,22 @@
 :root {
-  --dark-bg: black;
-  --light-text: white;
-  --link-hover: red;
-  --btn-hover: red;
-  --btn-primary: blue;
-  --btn-primary-hover: white;
+  --dark-bg: #0B6E4F;
+  --light-text: #E3E3E3;
+  --link-hover: #CE4760;
+
+  --btn-hover: #CE4760;
+  --btn-primary: #39A0ED;
+  --btn-primary-hover: #E3E3E3;
+
+  --btn-secondary: #0B6E4F;
+  --btn-secondary-hover: #CE4760;
+
+  --bg-light: #E3E3E3;
+  --secondary: #0B6E4F;
+  --primary: #0B6E4F;
+  --dark: #0E1116;
+  --bg-dark: #0E1116;
+
+  --danger: #CE4760;
 }
 
 * {
@@ -21,7 +33,7 @@
 }
 
 .mobileNavbar {
-  background-color: var(--dark-bg);
+  background-color: var(--bg-dark);
   padding: 3rem 2rem;
   top: 10vh;
   right: 0;
@@ -82,7 +94,7 @@
 .header-opposite {
   color: var(--light-text);
   transition: .2s;
-  background-color: var(--dark-bg);
+  background-color: var(--bg-dark);
 }
 .header-opposite .btn {
   color: var(--light-text);
@@ -116,8 +128,23 @@
   transition: .2s;
 }
 
+.btn-secondary {
+  background-color: var(--btn-secondary);
+  color: var(--light-text);
+}
+.btn-secondary:hover {
+  background-color: var(--btn-secondary-hover);
+  color: var(--light-text);
+}
+
 .btn-outline {
   border-style: solid;
+}
+.btn-outline-seconary {
+  border-color: var(--secondary);
+}
+.btn-outline-primary {
+  border-color: var(--primary);
 }
 
 input[type=search] {
@@ -174,6 +201,10 @@ input[type=search] {
   height: 100px;
 }
 
+.card-shadow {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
 .card-border {
   border: 1px solid black;
   width: 25rem;
@@ -196,138 +227,5 @@ input[type=search] {
 }
 
 /* footer */
-
-footer {
-  line-height: 1.5;
-  font-family: 'Poppins', sans-serif;
-}
-
-.footer_container{
-  max-width: 1170px;
-  margin: auto;
-  box-sizing: border-box;
-}
-.row{
-  display: flex;
-  flex-wrap: wrap;
-}
-ul{
-  list-style: none;
-}
-.footer{
-  background-color: var(--dark);
-    padding: 70px 0;
-}
-.footer-col{
-   width: 25%;
-   padding: 0 15px;
-}
-.footer-col h4{
-  font-size: 18px;
-  color: var(--light);
-  text-transform: capitalize;
-  margin-bottom: 35px;
-  font-weight: 500;
-  position: relative;
-}
-.footer-col h4::before{
-  content: '';
-  position: absolute;
-  left:0;
-  bottom: -10px;
-  background-color: var(--danger);
-  height: 2px;
-  box-sizing: border-box;
-  width: 50px;
-}
-.footer-col ul li:not(:last-child){
-  margin-bottom: 10px;
-}
-.footer-col ul li a{
-  font-size: 16px;
-  text-transform: capitalize;
-  color: var(--light);
-  text-decoration: none;
-  font-weight: 300;
-  color: var(--secondary);
-  display: block;
-  transition: all 0.3s ease;
-}
-.footer-col ul li a:hover{
-  color: #ffffff;
-  padding-left: 8px;
-}
-.footer-col .social-links a{
-  display: inline-block;
-  height: 40px;
-  width: 40px;
-  background-color: rgba(255,255,255,0.2);
-  margin:0 10px 10px 0;
-  text-align: center;
-  line-height: 40px;
-  border-radius: 50%;
-  color: #ffffff;
-  transition: all 0.5s ease;
-}
-.footer-col .social-links a:hover{
-  color: #24262b;
-  background-color: #ffffff;
-}
-
-.form-control {
-  font-size: 18px;
-}
-form input[type="text"],
-form input[type="password"],
-form input[type="email"],
-form input[type="tag"],
-form input[type="category"] {
-  width: 100%;
-  border-radius: 5px;
-  border: 1px solid black;
-  margin: auto;
-  margin-bottom: 10px;
-  padding: 10px 5px 10px 4px;
-}
-form input[type="file"] {
-  width: 100%;
-  margin: auto;
-  text-align: center;
-}
-
-form input[type="file"]::file-selector-button {
-  padding: 8px 18px;
-  margin: 5px 14px 5px 0;
-  border-radius: 5px;
-  border: 1px solid black;
-  transition: .2s;
-  cursor: pointer;
-}
-form input[type="file"]::file-selector-button:hover {
-  background-color: var(--btn-hover);
-  transition: .2s;
-  border: 1px solid transparent;
-  color: var(--btn-primary-hover);
-}
-
-.centered {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-/*responsive*/
-@media(max-width: 767px){
-  .footer-col{
-    width: 50%;
-    margin-bottom: 30px;
-}
-}
-@media(max-width: 574px){
-  .footer-col{
-    width: 100%;
-}
-}
 
 

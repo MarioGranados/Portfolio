@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <head th:replace="~{partials :: head}"></head>
-    <title>Art Portfolio</title>
-  </head>
-  <body>
-    <nav th:replace="~{partials :: navbar}"></nav>
-    <div class="container centered" style="margin-top: 15vh">
-      <div class="card card-border">
-        <h1>Log In</h1>
+<head>
+  <head th:replace="~{partials :: head}"></head>
+  <title>Art Portfolio</title>
+</head>
+
+<body>
+  <nav th:replace="~{partials :: navbar}"></nav>
+
+  <div class="container my-5 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="display-5">Log In</h1>
         <div th:if="${param.error}">Invalid Username and Password.</div>
         <div th:if="${param.logout}">You have been logged out.</div>
-
         <form th:action="@{/login}" method="post">
-          <label class="form-label" for="username">Username</label>
-          <input
-            class="form-control"
-            id="username"
-            name="username"
-            type="text"
-          />
-          <label class="form-label" for="password">Password</label>
-          <input
-            class="form-control"
-            id="password"
-            name="password"
-            type="password"
-          />
-          <input class="btn btn-primary" type="submit" value="Log In" />
+          <div class="form-floating mb-3">
+            <input type="username" class="form-control" id="username" placeholder="username">
+            <label for="username">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="password" placeholder="password">
+            <label for="password">Password</label>
+          </div>
+          <input type="submit" class="btn btn-primary" value="Log In">
         </form>
       </div>
     </div>
+  </div>
 
-    <div th:replace="~{partials :: Footer}"></div>
+  <div th:replace="~{partials :: Footer}"></div>
 
-    <script th:replace="~{partials :: js}"></script>
-  </body>
+  <script th:replace="~{partials :: js}"></script>
+</body>
+
 </html>

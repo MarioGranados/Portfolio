@@ -1,80 +1,83 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head>
-    <head th:replace="~{partials :: head}"></head>
-    <title>Art Portfolio</title>
-    <style>
-      .checked {
-        color: green;
-        margin-bottom: 5px;
-      }
-      .unchecked {
-        color: red;
-        margin-bottom: 5px;
-      }
-      input:disabled,
-      input[disabled] {
-        border: 1px solid #999999;
-        background-color: #cccccc;
-        color: #666666;
-      }
-      input:disabled,
-      input[disabled]:hover {
-        border: 1px solid #999999;
-        background-color: #cccccc;
-        color: #666666;
-      }
-    </style>
-  </head>
-  <body>
-    <nav th:replace="~{partials :: navbar}"></nav>
-    <div class="container centered" style="margin-top: 15vh">
-      <div class="card card-border">
-        <h1>Create an account</h1>
-        <form
-          th:action="@{/sign-up}"
-          method="POST"
-          th:object="${user}"
-          id="sign-up-form"
-        >
-          <label for="username">Username</label>
-          <input id="username" th:field="*{username}" type="text" required />
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-          <label for="firstName">firstname</label>
-          <input id="firstName" th:field="*{firstName}" type="text" required />
+<head>
 
-          <label for="lastName">lastname</label>
-          <input id="lastName" th:field="*{lastName}" type="text" required />
+  <head th:replace="~{partials :: head}"></head>
+  <title>Art Portfolio</title>
+  <style>
+    .checked {
+      color: green;
+      margin-bottom: 5px;
+    }
 
-          <label for="email">email</label>
-          <input id="email" th:field="*{email}" type="email" required />
+    .unchecked {
+      color: red;
+      margin-bottom: 5px;
+    }
 
-          <label for="password">password</label>
-          <input
-            oninput="validate()"
-            id="password"
-            type="password"
-            th:field="*{password}"
-            required
-          />
+    input:disabled,
+    input[disabled] {
+      border: 1px solid #999999;
+      background-color: #cccccc;
+      color: #666666;
+    }
 
-          <label for="password">password</label>
-          <input
-            oninput="doPassMatch()"
-            id="confirm_password"
-            type="password"
-            required
-          />
+    input:disabled,
+    input[disabled]:hover {
+      border: 1px solid #999999;
+      background-color: #cccccc;
+      color: #666666;
+    }
+  </style>
+</head>
+
+<body>
+  <nav th:replace="~{partials :: navbar}"></nav>
+  <div class="container my-5">
+    <div class="card" style="width: 25rem; margin: auto;">
+      <div class="card-body">
+
+        <h3 class="text-center mb-3">Create An Account</h3>
+
+        <form th:action="@{/sign-up}" method="POST" th:object="${user}" id="sign-up-form">
+          <div class="form-floating mb-3">
+            <input class="form-control" id="username" th:field="*{username}" type="text" required />
+            <label for="username">Username</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input class="form-control" id="firstName" th:field="*{firstName}" type="text" required />
+            <label for="firstName">First Name</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input class="form-control" id="lastName" th:field="*{lastName}" type="text" required />
+            <label for="lastName">Last Name</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input class="form-control" id="email" th:field="*{email}" type="email" required />
+            <label for="email">Email</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input class="form-control" oninput="validate()" id="password" type="password" th:field="*{password}"
+              required />
+            <label for="password">Password</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input class="form-control" oninput="doPassMatch()" id="confirm_password" type="password" required />
+            <label for="password">Confirm Password</label>
+          </div>
+
         </form>
-        <input
-          id="sign-up-btn"
-          class="btn btn-primary"
-          onclick="submit()"
-          value="sign-up"
-        />
+        <input id="sign-up-btn" class="btn btn-primary" onclick="submit()" value="sign-up" />
+        Already have an account?
+        <span>
+          <a href="/login">Login here</a>
+        </span>
         <div id="verify" style="display: flex; flex-direction: column">
           <span class="unchecked">Password Contains Capital Letter</span>
           <span class="unchecked">Password Contains Number</span>
@@ -83,66 +86,68 @@
         </div>
       </div>
     </div>
-    <div th:replace="~{partials :: Footer}"></div>
-    <script>
-      const password = document.getElementById("password");
-      const confirmPassword = document.getElementById("confirm_password");
-      const form = document.getElementById("sign-up-form");
-      const verify = document.getElementById("verify");
-      const signUpBtn = document.getElementById("sign-up-btn");
+  </div>
+  <div th:replace="~{partials :: Footer}"></div>
+  <script>
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirm_password");
+    const form = document.getElementById("sign-up-form");
+    const verify = document.getElementById("verify");
+    const signUpBtn = document.getElementById("sign-up-btn");
 
-      function turnGreen(classSelector) {
-        classSelector.style.color = "green";
-      }
-      function turnRed(classSelector) {
-        classSelector.style.color = "red";
-      }
+    function turnGreen(classSelector) {
+      classSelector.style.color = "green";
+    }
+    function turnRed(classSelector) {
+      classSelector.style.color = "red";
+    }
 
-      function validate() {
-        let val = password.value;
-        let format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-        let checklist = verify.getElementsByTagName("span");
+    function validate() {
+      let val = password.value;
+      let format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+      let checklist = verify.getElementsByTagName("span");
 
-        if (/[A-Z]/.test(val)) {
-          turnGreen(checklist[0]);
-        } else {
-          turnRed(checklist[0]);
-        }
-
-        if (/[1-9]/.test(val)) {
-          turnGreen(checklist[1]);
-        } else {
-          turnRed(checklist[1]);
-        }
-
-        if (format.test(val)) {
-          turnGreen(checklist[2]);
-        } else {
-          turnRed(checklist[2]);
-        }
-
-        if (password.value === confirmPassword.value) {
-          turnGreen(checklist[3]);
-        } else {
-          turnRed(checklist[3]);
-        }
+      if (/[A-Z]/.test(val)) {
+        turnGreen(checklist[0]);
+      } else {
+        turnRed(checklist[0]);
       }
 
-      function doPassMatch() {
-        if (confirmPassword.value == password.value) {
-          turnGreen(verify.getElementsByTagName("span")[3]);
-        } else {
-          turnRed(verify.getElementsByTagName("span")[3]);
-        }
+      if (/[1-9]/.test(val)) {
+        turnGreen(checklist[1]);
+      } else {
+        turnRed(checklist[1]);
       }
 
-      function submit() {
-        form.submit();
+      if (format.test(val)) {
+        turnGreen(checklist[2]);
+      } else {
+        turnRed(checklist[2]);
       }
-    </script>
 
-    <!-- select * from posts p left join categories c on p.post_id = c.category_id where c.category =  -->
+      if (password.value === confirmPassword.value) {
+        turnGreen(checklist[3]);
+      } else {
+        turnRed(checklist[3]);
+      }
+    }
 
-    <script th:replace="~{partials :: js}"></script>
-  </body>
+    function doPassMatch() {
+      if (confirmPassword.value == password.value) {
+        turnGreen(verify.getElementsByTagName("span")[3]);
+      } else {
+        turnRed(verify.getElementsByTagName("span")[3]);
+      }
+    }
+
+    function submit() {
+      form.submit();
+    }
+  </script>
+
+  <!-- select * from posts p left join categories c on p.post_id = c.category_id where c.category =  -->
+
+  <script th:replace="~{partials :: js}"></script>
+</body>
+
 </html>
