@@ -10,9 +10,4 @@ public class AuthController {
         return "login";
     }
 
-    @GetMapping("/welcome")
-    public String onboard() {
-        return "Onboard";
-    }
-
 }

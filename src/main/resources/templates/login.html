@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <head th:replace="~{partials :: head}"></head>
   <title>Art Portfolio</title>
@@ -15,15 +15,13 @@
         <div th:if="${param.error}">Invalid Username and Password.</div>
         <div th:if="${param.logout}">You have been logged out.</div>
         <form th:action="@{/login}" method="post">
-          <div class="form-floating mb-3">
-            <input type="username" class="form-control" id="username" placeholder="username">
+          <form th:action="@{/login}" method="post">
             <label for="username">Username</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="password" placeholder="password">
+            <input id="username" name="username" type="text" />
             <label for="password">Password</label>
-          </div>
-          <input type="submit" class="btn btn-primary" value="Log In">
+            <input id="password" name="password" type="password" />
+            <input type="submit" value="Log In" />
+        </form>
         </form>
       </div>
     </div>

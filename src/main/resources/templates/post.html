@@ -1,66 +1,42 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
+
   <head th:replace="~{partials :: head}"></head>
   <title>Art Portfolio</title>
 </head>
-  <body>
-    <nav th:replace="~{partials :: navbar}"></nav>
-    <div class="container centered" style="margin-top: 10vh;">
-      <div class="card card-border">
-      <h1>Upload</h1>
-        <form
-          th:action="@{/upload}"
-          method="POST"
-          th:object="${post}"
-          enctype="multipart/form-data"
-        >
-          <label for="title">Title</label>
-          <input type="text" id="title" th:field="*{postTitle}" />
-          <br/>
 
-          <label for="file">Upload a file!</label>
-          <input id="file" name="file" type="file" />
-          <br/>
-
-          <label for="tag">Tags</label>
-          <input id="tag" name="tag" type="tag" />
-          <span style="display: none" id="hidden_form_text">Separate Tags by Commas</span>
-          <br/>
-
-          <label for="category">Category</label>
-          <input id="category" name="category" type="category" />
-          <span style="display: none" id="hidden_form_text">Category</span>
-          <br/>
-
-          <label for="desc">Description</label>
-          <input type="text" id="desc" th:field="*{postDescription}" />
-          <br/>
-
-          <label for="price">Price</label>
-          <input type="text" id="price" th:field="*{postPrice}" />
-          <br/>
-
-          <input class="btn btn-primary" type="submit" id="create"/>
-        </form>
+<body>
+  <nav th:replace="~{partials :: navbar}"></nav>
+  <div class="container-fluid my-5">
+    <div class="row justify-content-center align-content-center align-items-center">
+      <div class="col">
+        <img src="/images/ns8230-image.jpg" class='img-fluid' alt="">
+      </div>
+      <div class="col-">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">Title: <span th:text="${post.postTitle}"></span></div>
+            <p class="text-lead">Description: <span th:text="${post.postDescription}"></span></p>
+            <p>
+              Price: <span th:text="${post.postPrice}"></span>
+            </p>
+            <p class="text-lead">
+              Creator:
+              <span th:text="${post.getUser().getUsername()}"></span>
+            </p>
+          </div>
+        </div>
+  
+      </div>
     </div>
-    </div>
-    
-        
-      <div th:replace="~{partials :: Footer}"></div>
-      <div th:replace="~{partials :: js}"></div>
-      <script>
-        const tagFormInput = document.getElementById('tag');
-        const hiddenText = document.getElementById('hidden_form_text');
+  </div>
+  
 
-        tagFormInput.onclick = function () {
-          hiddenText.style.display = 'unset';
-          hiddenText.style.transition = '280ms'
-        }
-      </script>
-  </body>
+  <div th:replace="~{partials :: Footer}"></div>
+
+  <script th:replace="~{partials :: js}"></script>
+</body>
+
 </html>

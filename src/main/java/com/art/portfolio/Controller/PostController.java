@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -107,13 +108,13 @@ public class PostController {
         post.setUser(user);
         post.setPostUrl("images/" + filename);
         postRepo.save(post);
-        return "post";
+        return "upload";
     }
 
     @GetMapping("/upload")
     public String getCreatePostForm(Model model) {
         model.addAttribute("post", new Post());
-        return "post";
+        return "upload";
     }
 
     /* --------------------------------- gallery -------------------------------- */
@@ -137,6 +138,13 @@ public class PostController {
     public String showResults(Model model, @PathVariable String searchQuery) {
         model.addAttribute("posts", postRepo.findAllByResults(searchQuery));
         return "gallery";
+    }
+
+    @GetMapping("/post/{postId}")
+    public String showPost(Model model, @PathVariable Long postId) {
+        Post post = postRepo.findPostById(postId);
+        model.addAttribute("post", post);
+        return "post";
     }
 
 }

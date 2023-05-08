@@ -17,6 +17,9 @@ public interface PostRepo extends JpaRepository<Post, Long>{
     @Query(value = "SELECT * FROM posts WHERE post_image LIKE = !?", nativeQuery = true)
     List<Post> findAllByResults(@Param("name")String category);
 
+    @Query(value = "SELECT * FROM posts WHERE post_id = :id LIMIT 1", nativeQuery = true)
+    Post findPostById(@Param("id") Long id);
+
     @Transactional
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query(value = "SELECT * FROM posts p LEFT JOIN categories c ON p.post_id = c.category_id WHERE c.category = :category", nativeQuery = true)

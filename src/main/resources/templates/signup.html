@@ -71,9 +71,9 @@
             <input class="form-control" oninput="doPassMatch()" id="confirm_password" type="password" required />
             <label for="password">Confirm Password</label>
           </div>
+          <input id="sign-up-btn" class="btn btn-primary" onclick="submit()" value="sign-up" />
 
         </form>
-        <input id="sign-up-btn" class="btn btn-primary" onclick="submit()" value="sign-up" />
         Already have an account?
         <span>
           <a href="/login">Login here</a>
@@ -144,8 +144,6 @@
       form.submit();
     }
   </script>
-
-  <!-- select * from posts p left join categories c on p.post_id = c.category_id where c.category =  -->
 
   <script th:replace="~{partials :: js}"></script>
 </body>

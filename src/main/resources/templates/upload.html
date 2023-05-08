@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+  <head th:replace="~{partials :: head}"></head>
+  <title>Art Portfolio</title>
+</head>
+
+<body>
+  <nav th:replace="~{partials :: navbar}"></nav>
+  <div class="container centered" style="margin-top: 10vh;">
+    <div class="card card-border">
+      <h1>Upload</h1>
+      <form th:action="@{/upload}" method="POST" th:object="${post}" enctype="multipart/form-data">
+        <div class="form-floating mb-3">
+          <input class="form-control" type="text" id="title" th:field="*{postTitle}" />
+          <label for="title">Title</label>
+          <br />
+        </div>
+
+        <div class="form-floating mb-3">
+          <input class="form-control" id="file" name="file" type="file" />
+          <label for="file">Upload a file!</label>
+          <br />
+        </div>
+
+        <div class="form-floating mb-3">
+          <input class="form-control" id="tag" name="tag" type="tag" />
+          <label for="tag">Tags</label>
+          <span style="display: none" id="hidden_form_text">Separate Tags by Commas <span class="text-secondary">Ex: Fan Art, Digital, Dogs</span></span>
+          <br />
+        </div>
+
+
+        <div class="form-floating mb-3">
+          <input class="form-control" id="category" name="category" type="category" />
+          <label for="category">Category</label>
+          <span style="display: none" id="hidden_form_text">Category</span>
+          <br />
+        </div>
+
+        <div class="form-floating mb-3">
+          <input class="form-control" type="text" id="desc" th:field="*{postDescription}" />
+          <label for="desc">Description</label>
+          <br />
+        </div>
+
+        <div class="form-floating mb-3">
+          <input class="form-control" type="text" id="price" th:field="*{postPrice}" />
+          <label for="price">Price</label>
+          <br />
+        </div>
+
+        <input class="btn btn-primary" type="submit" id="create" />
+      </form>
+    </div>
+  </div>
+
+
+  <div th:replace="~{partials :: Footer}"></div>
+  <div th:replace="~{partials :: js}"></div>
+  <script>
+    const tagFormInput = document.getElementById('tag');
+    const hiddenText = document.getElementById('hidden_form_text');
+
+    tagFormInput.onclick = function () {
+      hiddenText.style.display = 'unset';
+      hiddenText.style.transition = '280ms'
+    }
+  </script>
+</body>
+
+</html>
