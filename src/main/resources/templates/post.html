@@ -10,12 +10,14 @@
 <body>
   <nav th:replace="~{partials :: navbar}"></nav>
   <div class="container-fluid my-5">
-    <div class="row justify-content-center align-content-center align-items-center">
-      <div class="col">
+    <div class="row justify-content-center align-items-center align-content-center">
+
+      <div class="col-8">
         <img src="/images/ns8230-image.jpg" class='img-fluid' alt="">
       </div>
-      <div class="col-">
-        <div class="card">
+
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
           <div class="card-body">
             <div class="card-title">Title: <span th:text="${post.postTitle}"></span></div>
             <p class="text-lead">Description: <span th:text="${post.postDescription}"></span></p>

@@ -2,36 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-
   <head th:replace="~{partials :: head}"></head>
   <title>Art Portfolio</title>
 </head>
 
 <body>
   <nav th:replace="~{partials :: navbar}"></nav>
-
-  <section id="categories" class="categories">
-    <div class="row">
-        <div class="col" th:each="categories : ${categories}">
-          <form action="GET" th:action="@{|/category/${categories.category}|}">
-            <input class="btn btn-outline-dark" type="submit" th:value="${categories.category}" />
-          </form>
-        </div>
-    </div>
+  <section id="categories" class="my-4 mx-2">
+    <a class="btn btn-outline-dark" th:each="categories : ${categories}"
+      th:href="@{|/category/${categories.category}|}">
+      <span th:text="${categories.category}"></span>
+    </a>
   </section>
 
-  <section id="users">
-    <div class="row">
-      <div class="col" th:each="user : ${users}">
-        <form action="GET" th:action="@{|/profile/${user.username}|}">
-          <input class="btn btn-outline-dark" type="submit" th:value="${user.username}" />
-        </form>
-      </div>
-    </div>
-  </section>
+<!-- users -->
 
-  <section class="filters">
-    <button class="btn btn-outline-dark w-100">Filters</button>
+  <section class="filters d-flex justify-content-end container">
+    <div class="btn-group">
+      <button class="btn btn-outline-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Filters
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Best</a></li>
+        <li><a class="dropdown-item" href="#">Recent - Oldest</a></li>
+        <li><a class="dropdown-item" href="#">Oldest - Recent</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#">Surprise Me!</a></li>
+      </ul>
+    </div>
   </section>
 
   <div class="container px-4 py-5" id="custom-cards">

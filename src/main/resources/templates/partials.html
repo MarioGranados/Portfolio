@@ -152,3 +152,9 @@
   Username: <span th:text="${#authentication.principal.username}"/>
   Email: <span th:text="${#authentication.principal.email}"/>
 </div> -->
+
+  <!-- <section id="users">
+    <form th:each="user : ${users}" action="GET" th:action="@{|/profile/${user.username}|}">
+      <input class="btn btn-outline-dark" type="submit" th:value="${user.username}" />
+    </form>
+  </section> -->
