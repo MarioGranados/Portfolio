@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
+
     <head th:replace="~{partials :: head}"></head>
     <title>Art Portfolio</title>
 </head>
+
 <body>
     <nav th:replace="~{partials :: navbar}"></nav>
-    
+
+    <div class="col" th:each="post : ${post}">
+        <form th:action="@{|/post/${post.postId}|}" method="GET">
+            <button th:href="${post.postId}" class="btn">
+                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg gallery_img"
+                    th:style="|background-image: url('  ${post.postUrl}  '); background-position: center; background-size: contain|">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><span th:text="${post.postTitle}"></span></h3>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <li class="me-auto">
+                                <img th:src="${post.postUrl}" th:alt="${post.postTitle}" width="32" height="32"
+                                    class="rounded-circle border border-white">
+                            </li>
+                            <li class="d-flex align-items-center me-3">
+                                <svg class="bi me-2" width="1em" height="1em">
+                                    <use xlink:href="#geo-fill" />
+                                </svg>
+                                <small><span th:text="${post.postDescription}"></span></small>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <svg class="bi me-2" width="1em" height="1em">
+                                    <use xlink:href="#calendar3" />
+                                </svg>
+                                <small><span th:text="${post.postPrice}"></span></small>
+                            </li>
+
+                        </ul>
+                        <ul class="d-flex mt-auto list-unstyled justify-content-evenly align-content-center justify-content-center">
+                            <li class="me-3"><a class="btn btn-secondary" th:href="@{|/post/edit/${post.postId}|}">Edit Post</a></li>
+                            <li class="me-3"><a class="btn btn-danger" th:href="@{|/post/delete/${post.postId}|}">Delete Post</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </button>
+        </form>
+
+    </div>
+
     <div th:replace="~{partials :: Footer}"></div>
-<div th:replace="~{partials :: js}"></div>
+    <div th:replace="~{partials :: js}"></div>
 </body>
 
 </html>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.art.portfolio.Model.User;
+import com.art.portfolio.Repository.PostRepo;
 import com.art.portfolio.Repository.UserRepo;
 
 @Controller
@@ -20,10 +21,12 @@ public class UserController {
 
     private PasswordEncoder passwordEncoder;
     private UserRepo userRepo;
+    private PostRepo postRepo;
 
-    public UserController(PasswordEncoder passwordEncoder, UserRepo userRepo) {
+    public UserController(PasswordEncoder passwordEncoder, UserRepo userRepo, PostRepo postRepo) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
+        this.postRepo = postRepo;
     }
 
     @GetMapping("/sign-up")
@@ -56,6 +59,7 @@ public class UserController {
     public String getProfile(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("username", user.getUsername());
+        model.addAttribute("post", postRepo.findAllPostsByUserId(user.getId()));
         return "profile";
     }
 

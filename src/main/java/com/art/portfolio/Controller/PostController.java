@@ -5,18 +5,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -108,7 +108,7 @@ public class PostController {
         post.setUser(user);
         post.setPostUrl("images/" + filename);
         postRepo.save(post);
-        return "upload";
+        return "redirect:/profile";
     }
 
     @GetMapping("/upload")
@@ -116,6 +116,20 @@ public class PostController {
         model.addAttribute("post", new Post());
         return "upload";
     }
+
+    @PostMapping("/post/edit/{postId}")
+    public String editPost(@PathVariable Long postId) {
+        Post post = postRepo.findPostById(postId);
+        //TODO add some more stuff here
+        postRepo.save(post);
+        return "redirect:/profile";
+    }
+    @GetMapping("/post/delete/{postId}")
+    public String deletePost(@PathVariable Long postId) {
+        postRepo.delete(postRepo.findPostById(postId));
+        return "redirect:/profile";
+    }
+
 
     /* --------------------------------- gallery -------------------------------- */
 
@@ -139,6 +153,34 @@ public class PostController {
         model.addAttribute("posts", postRepo.findAllByResults(searchQuery));
         return "gallery";
     }
+
+    // @GetMapping("/gallery/best")
+    // public String sortByBest(Model model) {
+    //     model.addAttribute("posts", postRepo.findAllPostByBest);
+        
+    //     return "gallery";
+    // }
+    // @GetMapping("/gallery/recent-oldest")
+    // public String sortByRecent(Model model) {
+    //     model.addAttribute("posts", postRepo.findAllPostsAndSortByRecent);
+    //     return "gallery";
+    // }
+
+    // @GetMapping("/gallery/oldest-recent")
+    // public String sortByOldest(Model model){
+    //     model.addAttribute("posts", postRepo.findAllPostsAndSortByOldest);
+    //     return "gallery";
+    // }
+    // @GetMapping("/gallery/surpise-me")
+    // public String surpriseMe(Model model){
+    //     model.addAttribute("posts", postRepo.findAllPosts());
+    //     return "gallery";
+    // }
+
+
+
+
+    /* ---------------------------------- post ---------------------------------- */
 
     @GetMapping("/post/{postId}")
     public String showPost(Model model, @PathVariable Long postId) {

@@ -24,13 +24,13 @@
         Filters
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Best</a></li>
-        <li><a class="dropdown-item" href="#">Recent - Oldest</a></li>
-        <li><a class="dropdown-item" href="#">Oldest - Recent</a></li>
+        <li><a class="dropdown-item" th:href="@{|/gallery/best|}">Best</a></li>
+        <li><a class="dropdown-item" th:href="@{|/gallery/recent-oldest|}">Recent - Oldest</a></li>
+        <li><a class="dropdown-item" th:href="@{|/gallery/oldest-recent|}">Oldest - Recent</a></li>
         <li>
           <hr class="dropdown-divider">
         </li>
-        <li><a class="dropdown-item" href="#">Surprise Me!</a></li>
+        <li><a class="dropdown-item" th:href="@{|/gallery/suprise-me|}">Surprise Me!</a></li>
       </ul>
     </div>
   </section>
