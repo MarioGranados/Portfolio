@@ -40,7 +40,6 @@ public class User implements UserDetails{
     @Column
     private String lastName;
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String roles = ""; // Since we're not using the authorization part of the component

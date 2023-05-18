@@ -65,11 +65,13 @@ public class PostController {
         
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+        String uploadDir = uploadPath + "/i/" + user.getId().toString();
+
         String filename = uploadedFile.getOriginalFilename();
         // String filepath = Paths.get(uploadPath, filename).toString();
-        File destinationFile = new File(uploadPath, filename);
+        File destinationFile = new File(uploadDir, filename);
 
-        File directory = new File(uploadPath);
+        File directory = new File(uploadDir);
         if (!directory.exists()) {
             directory.mkdirs();
             // If you require it to make the entire directory path including parents,
@@ -106,7 +108,7 @@ public class PostController {
         }
 
         post.setUser(user);
-        post.setPostUrl("images/" + filename);
+        post.setPostUrl("images/i/" + user.getId() + "/" + filename);
         postRepo.save(post);
         return "redirect:/profile";
     }

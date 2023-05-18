@@ -111,12 +111,12 @@
   <form th:action="@{|/post/${post.postId}|}" method="GET">
     <button th:href="${post.postId}" class="btn">
       <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg gallery_img"
-      th:style="|background-image: url('  ${post.postUrl}  '); background-position: center; background-size: contain|">
+      th:style="|background-image: url('  @{ '../' + ${post.postUrl} } '); background-position: center; background-size: contain|">
       <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
         <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><span th:text="${post.postTitle}"></span></h3>
         <ul class="d-flex list-unstyled mt-auto">
           <li class="me-auto">
-            <img th:src="${post.postUrl}" th:alt="${post.postTitle}" width="32" height="32"
+            <img th:src="@{'../' + ${post.postUrl}}" th:alt="${post.postTitle}" width="32" height="32"
               class="rounded-circle border border-white">
           </li>
           <li class="d-flex align-items-center me-3">
