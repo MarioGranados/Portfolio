@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.art.portfolio.Model.User;
 import com.art.portfolio.Repository.PostRepo;
 import com.art.portfolio.Repository.UserRepo;
+import com.art.portfolio.Service.EmailService;
 
 @Controller
 public class UserController {
@@ -22,11 +23,23 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     private UserRepo userRepo;
     private PostRepo postRepo;
+    private EmailService emailService;
 
-    public UserController(PasswordEncoder passwordEncoder, UserRepo userRepo, PostRepo postRepo) {
+    public UserController(PasswordEncoder passwordEncoder, UserRepo userRepo, PostRepo postRepo, EmailService emailService) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
         this.postRepo = postRepo;
+        this.emailService = emailService;
+    }
+
+
+    @GetMapping("/sign-up/verify")
+    public String showVerificationForm() {
+        return "verify";
+    }
+    @PostMapping("/sign-up/verify")
+    public String verify() {
+        return "verify";
     }
 
     @GetMapping("/sign-up")
@@ -48,7 +61,6 @@ public class UserController {
         // System.out.println("password not strong enough");
         // return "redirect:/sign-up";
         // }
-
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userRepo.save(user);
