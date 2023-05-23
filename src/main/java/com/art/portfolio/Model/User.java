@@ -19,6 +19,14 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class User implements UserDetails{
 
+    public String getCode() {
+        return this.code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public User() {}
 
     @Id
@@ -39,6 +47,9 @@ public class User implements UserDetails{
 
     @Column
     private String lastName;
+
+    @Column
+    private String code;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -10,11 +10,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Objects;
 
 
 @Table(name = "posts")
 @Entity
 public class Post {
+
+    public String getPostDate() {
+        return this.postDate;
+    }
+
+    public void setPostDate(String postDate) {
+        this.postDate = postDate;
+    }
 
     public Long getPostId() {
         return this.postId;
@@ -97,6 +106,9 @@ public class Post {
 
     @Column
     private String postPrice;
+
+    @Column
+    private String postDate;
 
     @ManyToOne
     private User user;

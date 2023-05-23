@@ -23,6 +23,12 @@ public interface PostRepo extends JpaRepository<Post, Long>{
     @Query(value = "SELECT * FROM posts WHERE user_id = :userId", nativeQuery = true)
     List<Post> findAllPostsByUserId(@Param("userId") Long userId);
 
+    @Query(value = "SELECT * FROM posts WHERE user_id = :userId ORDER BY post_date", nativeQuery = true)
+    List<Post> findAllPostsByUserOrderByDate(@Param("userId") Long userId);
+
+    @Query(value = "SELECT * FROM posts ORDER BY post_date", nativeQuery = true)
+    List<Post> findAllPostsOrderByDate();
+
     @Transactional
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query(value = "SELECT * FROM posts p LEFT JOIN categories c ON p.post_id = c.category_id WHERE c.category = :category", nativeQuery = true)

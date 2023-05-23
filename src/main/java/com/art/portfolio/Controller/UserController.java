@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.art.portfolio.Model.User;
 import com.art.portfolio.Repository.PostRepo;
@@ -38,8 +39,12 @@ public class UserController {
         return "verify";
     }
     @PostMapping("/sign-up/verify")
-    public String verify() {
-        return "verify";
+    public String verify(@RequestParam(name = "verify") String verificationCode) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(user.getCode().equalsIgnoreCase(verificationCode.replaceAll("\\s+",""))) {
+            return "redirect:/profile";
+        } 
+        return "redirect:/verify";
     }
 
     @GetMapping("/sign-up")
@@ -49,7 +54,7 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user) {
+    public String saveUser(@ModelAttribute User user, Model model) {
         // Pattern pattern = Pattern.compile(("[^a-zA-Z]"));
         // Matcher matcher = pattern.matcher(user.getPassword());
         // if(matcher.find() && user.getPassword().length() > 8) {
@@ -61,7 +66,14 @@ public class UserController {
         // System.out.println("password not strong enough");
         // return "redirect:/sign-up";
         // }
+        if(userRepo.findByUsername(user.getUsername()) != null || userRepo.findByEmail(user.getEmail()) != null) {
+            return "redirect:/sign-up";
+        }
+
+        String verificationCode = emailService.generateRandomCode();
         String hash = passwordEncoder.encode(user.getPassword());
+        user.setCode(verificationCode);
+        emailService.verificationEmail(user, verificationCode);
         user.setPassword(hash);
         userRepo.save(user);
         return "redirect:/login";

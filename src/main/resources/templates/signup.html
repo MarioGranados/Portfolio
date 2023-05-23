@@ -39,6 +39,7 @@
       <div class="card-body">
 
         <h3 class="text-center mb-3">Create An Account</h3>
+        <h6 th:text="${error}" class="text-danger"></h6>
 
         <form th:action="@{/sign-up}" method="POST" th:object="${user}" id="sign-up-form">
           <div class="form-floating mb-3">
@@ -71,7 +72,7 @@
             <input class="form-control" oninput="doPassMatch()" id="confirm_password" type="password" required />
             <label for="password">Confirm Password</label>
           </div>
-          <input id="sign-up-btn" class="btn btn-primary" onclick="submit()" value="sign-up" />
+          <button id="sign-up-btn" type="submit" class="btn btn-primary">Sign Up</button>
 
         </form>
         Already have an account?
@@ -140,9 +141,6 @@
       }
     }
 
-    function submit() {
-      form.submit();
-    }
   </script>
 
   <script th:replace="~{partials :: js}"></script>

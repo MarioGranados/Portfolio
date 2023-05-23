@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+  <head th:replace="~{partials :: head}"></head>
+  <title>Email</title>
+</head>
+
+<body>
+  <nav th:replace="~{partials :: navbar}"></nav>
+  
+  <div class="card">
+    <div class="card-body">
+      <form th:action="@{/sign-up/verify}" method="POST">
+        <p class="text-lead">We send a verification to your Email. Enter the verification code below</p>
+        <input type="text" name="verify" class="form-control" id="verify">
+        <label for="verify"></label>
+        <button type="submit" class="btn btn-primary">Verify</button>
+      </form>
+    </div>
+  </div>
+
+
+  <div th:replace="~{partials :: Footer}"></div>
+  <div th:replace="~{partials :: js}"></div>
+
+</body>
+
+</html>
